@@ -1,0 +1,1689 @@
+{
+  "system": {
+    "page_faults": {
+      "mean": 827.3,
+      "std": 22.917460592308213,
+      "ci_95": [
+        813.0956107628663,
+        841.5043892371336
+      ]
+    },
+    "page_replacements": {
+      "mean": 555.3,
+      "std": 22.917460592308213,
+      "ci_95": [
+        541.0956107628663,
+        569.5043892371336
+      ]
+    },
+    "disk_reads": {
+      "mean": 827.3,
+      "std": 22.917460592308213,
+      "ci_95": [
+        813.0956107628663,
+        841.5043892371336
+      ]
+    },
+    "disk_writes": {
+      "mean": 70.4,
+      "std": 18.336848147923348,
+      "ci_95": [
+        59.03470376980873,
+        81.76529623019128
+      ]
+    },
+    "total_disk_io": {
+      "mean": 897.7,
+      "std": 39.2149206297807,
+      "ci_95": [
+        873.394340379245,
+        922.0056596207551
+      ]
+    },
+    "throughput": {
+      "mean": 363514.37728004734,
+      "std": 14358.687413694533,
+      "ci_95": [
+        354614.77061826456,
+        372413.9839418301
+      ]
+    },
+    "runtime_ms": {
+      "mean": 8.265619999999998,
+      "std": 0.3256771186313218,
+      "ci_95": [
+        8.063763230571535,
+        8.467476769428462
+      ]
+    },
+    "worst_case_slowdown": {
+      "mean": 12.904695444593141,
+      "std": 0.909831121559545,
+      "ci_95": [
+        12.340776273067338,
+        13.468614616118945
+      ]
+    },
+    "mean_slowdown": {
+      "mean": 11.036379488165448,
+      "std": 0.3757116039188117,
+      "ci_95": [
+        10.803511023464704,
+        11.269247952866191
+      ]
+    }
+  },
+  "per_process": {
+    "0": {
+      "accesses": {
+        "mean": 1500.0,
+        "std": 0.0,
+        "ci_95": [
+          1500.0,
+          1500.0
+        ]
+      },
+      "page_faults": {
+        "mean": 352.8,
+        "std": 19.369047472707585,
+        "ci_95": [
+          340.79494000014995,
+          364.8050599998501
+        ]
+      },
+      "page_fault_rate": {
+        "mean": 0.2352,
+        "std": 0.012912698315138386,
+        "ci_95": [
+          0.22719662666676663,
+          0.24320337333323336
+        ]
+      },
+      "shared_runtime_ms": {
+        "mean": 3.22459,
+        "std": 0.2579388045641834,
+        "ci_95": [
+          3.0647178726046844,
+          3.3844621273953157
+        ]
+      },
+      "isolated_runtime_ms": {
+        "mean": 0.35190999999999995,
+        "std": 0.005586850633406986,
+        "ci_95": [
+          0.34844723410205075,
+          0.35537276589794914
+        ]
+      },
+      "slowdown": {
+        "mean": 9.168063531737753,
+        "std": 0.7731972691182201,
+        "ci_95": [
+          8.688830899334747,
+          9.647296164140759
+        ]
+      }
+    },
+    "1": {
+      "accesses": {
+        "mean": 1500.0,
+        "std": 0.0,
+        "ci_95": [
+          1500.0,
+          1500.0
+        ]
+      },
+      "page_faults": {
+        "mean": 474.5,
+        "std": 28.751521698859698,
+        "ci_95": [
+          456.6796222262265,
+          492.3203777737735
+        ]
+      },
+      "page_fault_rate": {
+        "mean": 0.31633333333333336,
+        "std": 0.01916768113257313,
+        "ci_95": [
+          0.304453081484151,
+          0.3282135851825157
+        ]
+      },
+      "shared_runtime_ms": {
+        "mean": 4.68755,
+        "std": 0.36757850113955254,
+        "ci_95": [
+          4.45972248462769,
+          4.91537751537231
+        ]
+      },
+      "isolated_runtime_ms": {
+        "mean": 0.36310000000000003,
+        "std": 0.007561216833288145,
+        "ci_95": [
+          0.35841350925318316,
+          0.3677864907468169
+        ]
+      },
+      "slowdown": {
+        "mean": 12.904695444593141,
+        "std": 0.909831121559545,
+        "ci_95": [
+          12.340776273067338,
+          13.468614616118945
+        ]
+      }
+    }
+  },
+  "fairness_metrics": {
+    "jains_index": {
+      "mean": 0.9683079394570882,
+      "std": 0.0229001534729412,
+      "ci_95": [
+        0.9541142772836739,
+        0.9825016016305024
+      ]
+    },
+    "variance": {
+      "mean": 8.124517294176343,
+      "std": 5.900811034678391,
+      "ci_95": [
+        4.46715672345599,
+        11.781877864896696
+      ]
+    },
+    "cv": {
+      "mean": 0.1689986605325859,
+      "std": 0.06899000699243917,
+      "ci_95": [
+        0.12623821118672396,
+        0.21175910987844782
+      ]
+    },
+    "max_ratio": {
+      "mean": 1.4239187119418704,
+      "std": 0.20800916027876562,
+      "ci_95": [
+        1.2949932986925252,
+        1.5528441251912155
+      ]
+    },
+    "mean": {
+      "mean": 11.036379488165448,
+      "std": 0.3757116039188117,
+      "ci_95": [
+        10.803511023464704,
+        11.269247952866191
+      ]
+    },
+    "std": {
+      "mean": 1.8683159564276945,
+      "std": 0.7560781269457809,
+      "ci_95": [
+        1.399693878271906,
+        2.336938034583483
+      ]
+    },
+    "min": {
+      "mean": 9.168063531737753,
+      "std": 0.7731972691182201,
+      "ci_95": [
+        8.688830899334747,
+        9.647296164140759
+      ]
+    },
+    "max": {
+      "mean": 12.904695444593141,
+      "std": 0.909831121559545,
+      "ci_95": [
+        12.340776273067338,
+        13.468614616118945
+      ]
+    },
+    "basis": "slowdown"
+  },
+  "aggregate_wss": {
+    "mean": 340.0,
+    "std": 0.0,
+    "ci_95": [
+      340.0,
+      340.0
+    ]
+  },
+  "memory_ratio_to_wss": {
+    "mean": 0.8,
+    "std": 0.0,
+    "ci_95": [
+      0.8,
+      0.8
+    ]
+  },
+  "workload_kind": "synthetic",
+  "workload_label": "streaming",
+  "trace_name": null,
+  "config": {
+    "algorithm": "NRU",
+    "allocation_policy": "LocalAllocation",
+    "total_frames": 272,
+    "num_trials": 10,
+    "warmup_runs": 1,
+    "interleave": "random",
+    "workload_kind": "synthetic",
+    "workload_label": "streaming",
+    "trace_file": null,
+    "trace_name": null,
+    "process_count": 2
+  },
+  "trial_results": [
+    {
+      "per_process": {
+        "0": {
+          "page_faults": 371,
+          "page_replacements": 235,
+          "disk_reads": 371,
+          "disk_writes": 14,
+          "total_disk_io": 385,
+          "accesses": 1500,
+          "page_fault_rate": 0.24733333333333332,
+          "isolated_page_faults": 160,
+          "isolated_runtime_ns": 360800,
+          "isolated_runtime_ms": 0.3608,
+          "shared_runtime_ns": 3456500,
+          "shared_runtime_ms": 3.4565,
+          "slowdown": 9.58009977827051
+        },
+        "1": {
+          "page_faults": 458,
+          "page_replacements": 322,
+          "disk_reads": 458,
+          "disk_writes": 52,
+          "total_disk_io": 510,
+          "accesses": 1500,
+          "page_fault_rate": 0.30533333333333335,
+          "isolated_page_faults": 180,
+          "isolated_runtime_ns": 364100,
+          "isolated_runtime_ms": 0.3641,
+          "shared_runtime_ns": 4525600,
+          "shared_runtime_ms": 4.5256,
+          "slowdown": 12.429552320790991
+        }
+      },
+      "system_total": {
+        "page_faults": 829,
+        "page_replacements": 557,
+        "disk_reads": 829,
+        "disk_writes": 66,
+        "total_disk_io": 895
+      },
+      "allocation_type": "local",
+      "trial": 0,
+      "runtime_ns": 8340400,
+      "runtime_ms": 8.3404,
+      "total_accesses": 3000,
+      "throughput": 359694.97865809797,
+      "working_set_sizes": {
+        "0": 160,
+        "1": 180
+      },
+      "aggregate_wss": 340,
+      "memory_ratio_to_wss": 0.8,
+      "worst_case_slowdown": 12.429552320790991,
+      "mean_slowdown": 11.00482604953075,
+      "fairness_metrics": {
+        "basis": "slowdown",
+        "jains_index": 0.9835154279273544,
+        "variance": 4.0596898960382175,
+        "cv": 0.12946377024478198,
+        "max_ratio": 1.2974345370581193,
+        "mean": 11.00482604953075,
+        "std": 1.4247262712602407,
+        "min": 9.58009977827051,
+        "max": 12.429552320790991
+      },
+      "runtime_records": [
+        {
+          "mode": "shared_total",
+          "process_id": null,
+          "workload_name": "streaming",
+          "algorithm": "NRU",
+          "allocation_policy": "LocalAllocation",
+          "memory_frames": 272,
+          "repetition_id": 0,
+          "duration_ns": 8340400,
+          "metadata": {
+            "interleave": "random"
+          },
+          "duration_ms": 8.3404
+        },
+        {
+          "mode": "shared",
+          "process_id": 0,
+          "workload_name": "streaming",
+          "algorithm": "NRU",
+          "allocation_policy": "LocalAllocation",
+          "memory_frames": 272,
+          "repetition_id": 0,
+          "duration_ns": 3456500,
+          "metadata": {
+            "interleave": "random"
+          },
+          "duration_ms": 3.4565
+        },
+        {
+          "mode": "isolation",
+          "process_id": 0,
+          "workload_name": "streaming",
+          "algorithm": "NRU",
+          "allocation_policy": "LocalAllocation",
+          "memory_frames": 272,
+          "repetition_id": 0,
+          "duration_ns": 360800,
+          "metadata": {
+            "trace_kind": "synthetic"
+          },
+          "duration_ms": 0.3608
+        },
+        {
+          "mode": "shared",
+          "process_id": 1,
+          "workload_name": "streaming",
+          "algorithm": "NRU",
+          "allocation_policy": "LocalAllocation",
+          "memory_frames": 272,
+          "repetition_id": 0,
+          "duration_ns": 4525600,
+          "metadata": {
+            "interleave": "random"
+          },
+          "duration_ms": 4.5256
+        },
+        {
+          "mode": "isolation",
+          "process_id": 1,
+          "workload_name": "streaming",
+          "algorithm": "NRU",
+          "allocation_policy": "LocalAllocation",
+          "memory_frames": 272,
+          "repetition_id": 0,
+          "duration_ns": 364100,
+          "metadata": {
+            "trace_kind": "synthetic"
+          },
+          "duration_ms": 0.3641
+        }
+      ],
+      "workload_kind": "synthetic",
+      "workload_label": "streaming",
+      "trace_name": null
+    },
+    {
+      "per_process": {
+        "0": {
+          "page_faults": 365,
+          "page_replacements": 229,
+          "disk_reads": 365,
+          "disk_writes": 32,
+          "total_disk_io": 397,
+          "accesses": 1500,
+          "page_fault_rate": 0.24333333333333335,
+          "isolated_page_faults": 160,
+          "isolated_runtime_ns": 352600,
+          "isolated_runtime_ms": 0.3526,
+          "shared_runtime_ns": 3421000,
+          "shared_runtime_ms": 3.421,
+          "slowdown": 9.702212138400453
+        },
+        "1": {
+          "page_faults": 487,
+          "page_replacements": 351,
+          "disk_reads": 487,
+          "disk_writes": 63,
+          "total_disk_io": 550,
+          "accesses": 1500,
+          "page_fault_rate": 0.32466666666666666,
+          "isolated_page_faults": 180,
+          "isolated_runtime_ns": 359500,
+          "isolated_runtime_ms": 0.3595,
+          "shared_runtime_ns": 4841000,
+          "shared_runtime_ms": 4.841,
+          "slowdown": 13.465924895688456
+        }
+      },
+      "system_total": {
+        "page_faults": 852,
+        "page_replacements": 580,
+        "disk_reads": 852,
+        "disk_writes": 95,
+        "total_disk_io": 947
+      },
+      "allocation_type": "local",
+      "trial": 1,
+      "runtime_ns": 8616300,
+      "runtime_ms": 8.6163,
+      "total_accesses": 3000,
+      "throughput": 348177.29187702376,
+      "working_set_sizes": {
+        "0": 160,
+        "1": 180
+      },
+      "aggregate_wss": 340,
+      "memory_ratio_to_wss": 0.8,
+      "worst_case_slowdown": 13.465924895688456,
+      "mean_slowdown": 11.584068517044454,
+      "fairness_metrics": {
+        "basis": "slowdown",
+        "jains_index": 0.97428787253655,
+        "variance": 7.082766859686231,
+        "cv": 0.16245211048908195,
+        "max_ratio": 1.3879231564512569,
+        "mean": 11.584068517044454,
+        "std": 1.8818563786440015,
+        "min": 9.702212138400453,
+        "max": 13.465924895688456
+      },
+      "runtime_records": [
+        {
+          "mode": "shared_total",
+          "process_id": null,
+          "workload_name": "streaming",
+          "algorithm": "NRU",
+          "allocation_policy": "LocalAllocation",
+          "memory_frames": 272,
+          "repetition_id": 1,
+          "duration_ns": 8616300,
+          "metadata": {
+            "interleave": "random"
+          },
+          "duration_ms": 8.6163
+        },
+        {
+          "mode": "shared",
+          "process_id": 0,
+          "workload_name": "streaming",
+          "algorithm": "NRU",
+          "allocation_policy": "LocalAllocation",
+          "memory_frames": 272,
+          "repetition_id": 1,
+          "duration_ns": 3421000,
+          "metadata": {
+            "interleave": "random"
+          },
+          "duration_ms": 3.421
+        },
+        {
+          "mode": "isolation",
+          "process_id": 0,
+          "workload_name": "streaming",
+          "algorithm": "NRU",
+          "allocation_policy": "LocalAllocation",
+          "memory_frames": 272,
+          "repetition_id": 1,
+          "duration_ns": 352600,
+          "metadata": {
+            "trace_kind": "synthetic"
+          },
+          "duration_ms": 0.3526
+        },
+        {
+          "mode": "shared",
+          "process_id": 1,
+          "workload_name": "streaming",
+          "algorithm": "NRU",
+          "allocation_policy": "LocalAllocation",
+          "memory_frames": 272,
+          "repetition_id": 1,
+          "duration_ns": 4841000,
+          "metadata": {
+            "interleave": "random"
+          },
+          "duration_ms": 4.841
+        },
+        {
+          "mode": "isolation",
+          "process_id": 1,
+          "workload_name": "streaming",
+          "algorithm": "NRU",
+          "allocation_policy": "LocalAllocation",
+          "memory_frames": 272,
+          "repetition_id": 1,
+          "duration_ns": 359500,
+          "metadata": {
+            "trace_kind": "synthetic"
+          },
+          "duration_ms": 0.3595
+        }
+      ],
+      "workload_kind": "synthetic",
+      "workload_label": "streaming",
+      "trace_name": null
+    },
+    {
+      "per_process": {
+        "0": {
+          "page_faults": 365,
+          "page_replacements": 229,
+          "disk_reads": 365,
+          "disk_writes": 18,
+          "total_disk_io": 383,
+          "accesses": 1500,
+          "page_fault_rate": 0.24333333333333335,
+          "isolated_page_faults": 160,
+          "isolated_runtime_ns": 349100,
+          "isolated_runtime_ms": 0.3491,
+          "shared_runtime_ns": 3366500,
+          "shared_runtime_ms": 3.3665,
+          "slowdown": 9.64336866227442
+        },
+        "1": {
+          "page_faults": 454,
+          "page_replacements": 318,
+          "disk_reads": 454,
+          "disk_writes": 47,
+          "total_disk_io": 501,
+          "accesses": 1500,
+          "page_fault_rate": 0.30266666666666664,
+          "isolated_page_faults": 180,
+          "isolated_runtime_ns": 355900,
+          "isolated_runtime_ms": 0.3559,
+          "shared_runtime_ns": 4388000,
+          "shared_runtime_ms": 4.388,
+          "slowdown": 12.329305984827199
+        }
+      },
+      "system_total": {
+        "page_faults": 819,
+        "page_replacements": 547,
+        "disk_reads": 819,
+        "disk_writes": 65,
+        "total_disk_io": 884
+      },
+      "allocation_type": "local",
+      "trial": 2,
+      "runtime_ns": 8102800,
+      "runtime_ms": 8.1028,
+      "total_accesses": 3000,
+      "throughput": 370242.38534827466,
+      "working_set_sizes": {
+        "0": 160,
+        "1": 180
+      },
+      "aggregate_wss": 340,
+      "memory_ratio_to_wss": 0.8,
+      "worst_case_slowdown": 12.329305984827199,
+      "mean_slowdown": 10.98633732355081,
+      "fairness_metrics": {
+        "basis": "slowdown",
+        "jains_index": 0.9852774031340183,
+        "variance": 3.6071296503409935,
+        "cv": 0.12223988957607744,
+        "max_ratio": 1.2785268734006163,
+        "mean": 10.98633732355081,
+        "std": 1.3429686612763891,
+        "min": 9.64336866227442,
+        "max": 12.329305984827199
+      },
+      "runtime_records": [
+        {
+          "mode": "shared_total",
+          "process_id": null,
+          "workload_name": "streaming",
+          "algorithm": "NRU",
+          "allocation_policy": "LocalAllocation",
+          "memory_frames": 272,
+          "repetition_id": 2,
+          "duration_ns": 8102800,
+          "metadata": {
+            "interleave": "random"
+          },
+          "duration_ms": 8.1028
+        },
+        {
+          "mode": "shared",
+          "process_id": 0,
+          "workload_name": "streaming",
+          "algorithm": "NRU",
+          "allocation_policy": "LocalAllocation",
+          "memory_frames": 272,
+          "repetition_id": 2,
+          "duration_ns": 3366500,
+          "metadata": {
+            "interleave": "random"
+          },
+          "duration_ms": 3.3665
+        },
+        {
+          "mode": "isolation",
+          "process_id": 0,
+          "workload_name": "streaming",
+          "algorithm": "NRU",
+          "allocation_policy": "LocalAllocation",
+          "memory_frames": 272,
+          "repetition_id": 2,
+          "duration_ns": 349100,
+          "metadata": {
+            "trace_kind": "synthetic"
+          },
+          "duration_ms": 0.3491
+        },
+        {
+          "mode": "shared",
+          "process_id": 1,
+          "workload_name": "streaming",
+          "algorithm": "NRU",
+          "allocation_policy": "LocalAllocation",
+          "memory_frames": 272,
+          "repetition_id": 2,
+          "duration_ns": 4388000,
+          "metadata": {
+            "interleave": "random"
+          },
+          "duration_ms": 4.388
+        },
+        {
+          "mode": "isolation",
+          "process_id": 1,
+          "workload_name": "streaming",
+          "algorithm": "NRU",
+          "allocation_policy": "LocalAllocation",
+          "memory_frames": 272,
+          "repetition_id": 2,
+          "duration_ns": 355900,
+          "metadata": {
+            "trace_kind": "synthetic"
+          },
+          "duration_ms": 0.3559
+        }
+      ],
+      "workload_kind": "synthetic",
+      "workload_label": "streaming",
+      "trace_name": null
+    },
+    {
+      "per_process": {
+        "0": {
+          "page_faults": 336,
+          "page_replacements": 200,
+          "disk_reads": 336,
+          "disk_writes": 15,
+          "total_disk_io": 351,
+          "accesses": 1500,
+          "page_fault_rate": 0.224,
+          "isolated_page_faults": 160,
+          "isolated_runtime_ns": 346900,
+          "isolated_runtime_ms": 0.3469,
+          "shared_runtime_ns": 3013100,
+          "shared_runtime_ms": 3.0131,
+          "slowdown": 8.685788411646007
+        },
+        "1": {
+          "page_faults": 487,
+          "page_replacements": 351,
+          "disk_reads": 487,
+          "disk_writes": 53,
+          "total_disk_io": 540,
+          "accesses": 1500,
+          "page_fault_rate": 0.32466666666666666,
+          "isolated_page_faults": 180,
+          "isolated_runtime_ns": 357000,
+          "isolated_runtime_ms": 0.357,
+          "shared_runtime_ns": 4848100,
+          "shared_runtime_ms": 4.8481,
+          "slowdown": 13.580112044817927
+        }
+      },
+      "system_total": {
+        "page_faults": 823,
+        "page_replacements": 551,
+        "disk_reads": 823,
+        "disk_writes": 68,
+        "total_disk_io": 891
+      },
+      "allocation_type": "local",
+      "trial": 3,
+      "runtime_ns": 8213600,
+      "runtime_ms": 8.2136,
+      "total_accesses": 3000,
+      "throughput": 365247.88156228693,
+      "working_set_sizes": {
+        "0": 160,
+        "1": 180
+      },
+      "aggregate_wss": 340,
+      "memory_ratio_to_wss": 0.8,
+      "worst_case_slowdown": 13.580112044817927,
+      "mean_slowdown": 11.132950228231966,
+      "fairness_metrics": {
+        "basis": "slowdown",
+        "jains_index": 0.95390943977943,
+        "variance": 11.977201913112593,
+        "cv": 0.21981251747449843,
+        "max_ratio": 1.5634863988408414,
+        "mean": 11.132950228231966,
+        "std": 2.44716181658596,
+        "min": 8.685788411646007,
+        "max": 13.580112044817927
+      },
+      "runtime_records": [
+        {
+          "mode": "shared_total",
+          "process_id": null,
+          "workload_name": "streaming",
+          "algorithm": "NRU",
+          "allocation_policy": "LocalAllocation",
+          "memory_frames": 272,
+          "repetition_id": 3,
+          "duration_ns": 8213600,
+          "metadata": {
+            "interleave": "random"
+          },
+          "duration_ms": 8.2136
+        },
+        {
+          "mode": "shared",
+          "process_id": 0,
+          "workload_name": "streaming",
+          "algorithm": "NRU",
+          "allocation_policy": "LocalAllocation",
+          "memory_frames": 272,
+          "repetition_id": 3,
+          "duration_ns": 3013100,
+          "metadata": {
+            "interleave": "random"
+          },
+          "duration_ms": 3.0131
+        },
+        {
+          "mode": "isolation",
+          "process_id": 0,
+          "workload_name": "streaming",
+          "algorithm": "NRU",
+          "allocation_policy": "LocalAllocation",
+          "memory_frames": 272,
+          "repetition_id": 3,
+          "duration_ns": 346900,
+          "metadata": {
+            "trace_kind": "synthetic"
+          },
+          "duration_ms": 0.3469
+        },
+        {
+          "mode": "shared",
+          "process_id": 1,
+          "workload_name": "streaming",
+          "algorithm": "NRU",
+          "allocation_policy": "LocalAllocation",
+          "memory_frames": 272,
+          "repetition_id": 3,
+          "duration_ns": 4848100,
+          "metadata": {
+            "interleave": "random"
+          },
+          "duration_ms": 4.8481
+        },
+        {
+          "mode": "isolation",
+          "process_id": 1,
+          "workload_name": "streaming",
+          "algorithm": "NRU",
+          "allocation_policy": "LocalAllocation",
+          "memory_frames": 272,
+          "repetition_id": 3,
+          "duration_ns": 357000,
+          "metadata": {
+            "trace_kind": "synthetic"
+          },
+          "duration_ms": 0.357
+        }
+      ],
+      "workload_kind": "synthetic",
+      "workload_label": "streaming",
+      "trace_name": null
+    },
+    {
+      "per_process": {
+        "0": {
+          "page_faults": 363,
+          "page_replacements": 227,
+          "disk_reads": 363,
+          "disk_writes": 15,
+          "total_disk_io": 378,
+          "accesses": 1500,
+          "page_fault_rate": 0.242,
+          "isolated_page_faults": 160,
+          "isolated_runtime_ns": 347500,
+          "isolated_runtime_ms": 0.3475,
+          "shared_runtime_ns": 3388200,
+          "shared_runtime_ms": 3.3882,
+          "slowdown": 9.75021582733813
+        },
+        "1": {
+          "page_faults": 506,
+          "page_replacements": 370,
+          "disk_reads": 506,
+          "disk_writes": 65,
+          "total_disk_io": 571,
+          "accesses": 1500,
+          "page_fault_rate": 0.3373333333333333,
+          "isolated_page_faults": 180,
+          "isolated_runtime_ns": 369600,
+          "isolated_runtime_ms": 0.3696,
+          "shared_runtime_ns": 5109000,
+          "shared_runtime_ms": 5.109,
+          "slowdown": 13.823051948051948
+        }
+      },
+      "system_total": {
+        "page_faults": 869,
+        "page_replacements": 597,
+        "disk_reads": 869,
+        "disk_writes": 80,
+        "total_disk_io": 949
+      },
+      "allocation_type": "local",
+      "trial": 4,
+      "runtime_ns": 8849100,
+      "runtime_ms": 8.8491,
+      "total_accesses": 3000,
+      "throughput": 339017.5272061565,
+      "working_set_sizes": {
+        "0": 160,
+        "1": 180
+      },
+      "aggregate_wss": 340,
+      "memory_ratio_to_wss": 0.8,
+      "worst_case_slowdown": 13.823051948051948,
+      "mean_slowdown": 11.78663388769504,
+      "fairness_metrics": {
+        "basis": "slowdown",
+        "jains_index": 0.9710145511206558,
+        "variance": 8.293997033095591,
+        "cv": 0.172773505969578,
+        "max_ratio": 1.4177175349589906,
+        "mean": 11.78663388769504,
+        "std": 2.036418060356909,
+        "min": 9.75021582733813,
+        "max": 13.823051948051948
+      },
+      "runtime_records": [
+        {
+          "mode": "shared_total",
+          "process_id": null,
+          "workload_name": "streaming",
+          "algorithm": "NRU",
+          "allocation_policy": "LocalAllocation",
+          "memory_frames": 272,
+          "repetition_id": 4,
+          "duration_ns": 8849100,
+          "metadata": {
+            "interleave": "random"
+          },
+          "duration_ms": 8.8491
+        },
+        {
+          "mode": "shared",
+          "process_id": 0,
+          "workload_name": "streaming",
+          "algorithm": "NRU",
+          "allocation_policy": "LocalAllocation",
+          "memory_frames": 272,
+          "repetition_id": 4,
+          "duration_ns": 3388200,
+          "metadata": {
+            "interleave": "random"
+          },
+          "duration_ms": 3.3882
+        },
+        {
+          "mode": "isolation",
+          "process_id": 0,
+          "workload_name": "streaming",
+          "algorithm": "NRU",
+          "allocation_policy": "LocalAllocation",
+          "memory_frames": 272,
+          "repetition_id": 4,
+          "duration_ns": 347500,
+          "metadata": {
+            "trace_kind": "synthetic"
+          },
+          "duration_ms": 0.3475
+        },
+        {
+          "mode": "shared",
+          "process_id": 1,
+          "workload_name": "streaming",
+          "algorithm": "NRU",
+          "allocation_policy": "LocalAllocation",
+          "memory_frames": 272,
+          "repetition_id": 4,
+          "duration_ns": 5109000,
+          "metadata": {
+            "interleave": "random"
+          },
+          "duration_ms": 5.109
+        },
+        {
+          "mode": "isolation",
+          "process_id": 1,
+          "workload_name": "streaming",
+          "algorithm": "NRU",
+          "allocation_policy": "LocalAllocation",
+          "memory_frames": 272,
+          "repetition_id": 4,
+          "duration_ns": 369600,
+          "metadata": {
+            "trace_kind": "synthetic"
+          },
+          "duration_ms": 0.3696
+        }
+      ],
+      "workload_kind": "synthetic",
+      "workload_label": "streaming",
+      "trace_name": null
+    },
+    {
+      "per_process": {
+        "0": {
+          "page_faults": 369,
+          "page_replacements": 233,
+          "disk_reads": 369,
+          "disk_writes": 26,
+          "total_disk_io": 395,
+          "accesses": 1500,
+          "page_fault_rate": 0.246,
+          "isolated_page_faults": 160,
+          "isolated_runtime_ns": 353100,
+          "isolated_runtime_ms": 0.3531,
+          "shared_runtime_ns": 3463000,
+          "shared_runtime_ms": 3.463,
+          "slowdown": 9.807419994335882
+        },
+        "1": {
+          "page_faults": 458,
+          "page_replacements": 322,
+          "disk_reads": 458,
+          "disk_writes": 34,
+          "total_disk_io": 492,
+          "accesses": 1500,
+          "page_fault_rate": 0.30533333333333335,
+          "isolated_page_faults": 180,
+          "isolated_runtime_ns": 374600,
+          "isolated_runtime_ms": 0.3746,
+          "shared_runtime_ns": 4506300,
+          "shared_runtime_ms": 4.5063,
+          "slowdown": 12.029631607047518
+        }
+      },
+      "system_total": {
+        "page_faults": 827,
+        "page_replacements": 555,
+        "disk_reads": 827,
+        "disk_writes": 60,
+        "total_disk_io": 887
+      },
+      "allocation_type": "local",
+      "trial": 5,
+      "runtime_ns": 8328500,
+      "runtime_ms": 8.3285,
+      "total_accesses": 3000,
+      "throughput": 360208.92117428104,
+      "working_set_sizes": {
+        "0": 160,
+        "1": 180
+      },
+      "aggregate_wss": 340,
+      "memory_ratio_to_wss": 0.8,
+      "worst_case_slowdown": 12.029631607047518,
+      "mean_slowdown": 10.9185258006917,
+      "fairness_metrics": {
+        "basis": "slowdown",
+        "jains_index": 0.9897503627705088,
+        "variance": 2.4691122258352247,
+        "cv": 0.1017633540129958,
+        "max_ratio": 1.2265847301323936,
+        "mean": 10.9185258006917,
+        "std": 1.111105806355818,
+        "min": 9.807419994335882,
+        "max": 12.029631607047518
+      },
+      "runtime_records": [
+        {
+          "mode": "shared_total",
+          "process_id": null,
+          "workload_name": "streaming",
+          "algorithm": "NRU",
+          "allocation_policy": "LocalAllocation",
+          "memory_frames": 272,
+          "repetition_id": 5,
+          "duration_ns": 8328500,
+          "metadata": {
+            "interleave": "random"
+          },
+          "duration_ms": 8.3285
+        },
+        {
+          "mode": "shared",
+          "process_id": 0,
+          "workload_name": "streaming",
+          "algorithm": "NRU",
+          "allocation_policy": "LocalAllocation",
+          "memory_frames": 272,
+          "repetition_id": 5,
+          "duration_ns": 3463000,
+          "metadata": {
+            "interleave": "random"
+          },
+          "duration_ms": 3.463
+        },
+        {
+          "mode": "isolation",
+          "process_id": 0,
+          "workload_name": "streaming",
+          "algorithm": "NRU",
+          "allocation_policy": "LocalAllocation",
+          "memory_frames": 272,
+          "repetition_id": 5,
+          "duration_ns": 353100,
+          "metadata": {
+            "trace_kind": "synthetic"
+          },
+          "duration_ms": 0.3531
+        },
+        {
+          "mode": "shared",
+          "process_id": 1,
+          "workload_name": "streaming",
+          "algorithm": "NRU",
+          "allocation_policy": "LocalAllocation",
+          "memory_frames": 272,
+          "repetition_id": 5,
+          "duration_ns": 4506300,
+          "metadata": {
+            "interleave": "random"
+          },
+          "duration_ms": 4.5063
+        },
+        {
+          "mode": "isolation",
+          "process_id": 1,
+          "workload_name": "streaming",
+          "algorithm": "NRU",
+          "allocation_policy": "LocalAllocation",
+          "memory_frames": 272,
+          "repetition_id": 5,
+          "duration_ns": 374600,
+          "metadata": {
+            "trace_kind": "synthetic"
+          },
+          "duration_ms": 0.3746
+        }
+      ],
+      "workload_kind": "synthetic",
+      "workload_label": "streaming",
+      "trace_name": null
+    },
+    {
+      "per_process": {
+        "0": {
+          "page_faults": 334,
+          "page_replacements": 198,
+          "disk_reads": 334,
+          "disk_writes": 5,
+          "total_disk_io": 339,
+          "accesses": 1500,
+          "page_fault_rate": 0.22266666666666668,
+          "isolated_page_faults": 160,
+          "isolated_runtime_ns": 346600,
+          "isolated_runtime_ms": 0.3466,
+          "shared_runtime_ns": 2962000,
+          "shared_runtime_ms": 2.962,
+          "slowdown": 8.545874206578189
+        },
+        "1": {
+          "page_faults": 459,
+          "page_replacements": 323,
+          "disk_reads": 459,
+          "disk_writes": 51,
+          "total_disk_io": 510,
+          "accesses": 1500,
+          "page_fault_rate": 0.306,
+          "isolated_page_faults": 180,
+          "isolated_runtime_ns": 356800,
+          "isolated_runtime_ms": 0.3568,
+          "shared_runtime_ns": 4464300,
+          "shared_runtime_ms": 4.4643,
+          "slowdown": 12.512051569506726
+        }
+      },
+      "system_total": {
+        "page_faults": 793,
+        "page_replacements": 521,
+        "disk_reads": 793,
+        "disk_writes": 56,
+        "total_disk_io": 849
+      },
+      "allocation_type": "local",
+      "trial": 6,
+      "runtime_ns": 7776900,
+      "runtime_ms": 7.7769,
+      "total_accesses": 3000,
+      "throughput": 385757.82123982563,
+      "working_set_sizes": {
+        "0": 160,
+        "1": 180
+      },
+      "aggregate_wss": 340,
+      "memory_ratio_to_wss": 0.8,
+      "worst_case_slowdown": 12.512051569506726,
+      "mean_slowdown": 10.528962888042457,
+      "fairness_metrics": {
+        "basis": "slowdown",
+        "jains_index": 0.9657410709037276,
+        "variance": 7.865281437103382,
+        "cv": 0.18834606053331468,
+        "max_ratio": 1.4641043463845478,
+        "mean": 10.528962888042457,
+        "std": 1.9830886814642685,
+        "min": 8.545874206578189,
+        "max": 12.512051569506726
+      },
+      "runtime_records": [
+        {
+          "mode": "shared_total",
+          "process_id": null,
+          "workload_name": "streaming",
+          "algorithm": "NRU",
+          "allocation_policy": "LocalAllocation",
+          "memory_frames": 272,
+          "repetition_id": 6,
+          "duration_ns": 7776900,
+          "metadata": {
+            "interleave": "random"
+          },
+          "duration_ms": 7.7769
+        },
+        {
+          "mode": "shared",
+          "process_id": 0,
+          "workload_name": "streaming",
+          "algorithm": "NRU",
+          "allocation_policy": "LocalAllocation",
+          "memory_frames": 272,
+          "repetition_id": 6,
+          "duration_ns": 2962000,
+          "metadata": {
+            "interleave": "random"
+          },
+          "duration_ms": 2.962
+        },
+        {
+          "mode": "isolation",
+          "process_id": 0,
+          "workload_name": "streaming",
+          "algorithm": "NRU",
+          "allocation_policy": "LocalAllocation",
+          "memory_frames": 272,
+          "repetition_id": 6,
+          "duration_ns": 346600,
+          "metadata": {
+            "trace_kind": "synthetic"
+          },
+          "duration_ms": 0.3466
+        },
+        {
+          "mode": "shared",
+          "process_id": 1,
+          "workload_name": "streaming",
+          "algorithm": "NRU",
+          "allocation_policy": "LocalAllocation",
+          "memory_frames": 272,
+          "repetition_id": 6,
+          "duration_ns": 4464300,
+          "metadata": {
+            "interleave": "random"
+          },
+          "duration_ms": 4.4643
+        },
+        {
+          "mode": "isolation",
+          "process_id": 1,
+          "workload_name": "streaming",
+          "algorithm": "NRU",
+          "allocation_policy": "LocalAllocation",
+          "memory_frames": 272,
+          "repetition_id": 6,
+          "duration_ns": 356800,
+          "metadata": {
+            "trace_kind": "synthetic"
+          },
+          "duration_ms": 0.3568
+        }
+      ],
+      "workload_kind": "synthetic",
+      "workload_label": "streaming",
+      "trace_name": null
+    },
+    {
+      "per_process": {
+        "0": {
+          "page_faults": 316,
+          "page_replacements": 180,
+          "disk_reads": 316,
+          "disk_writes": 13,
+          "total_disk_io": 329,
+          "accesses": 1500,
+          "page_fault_rate": 0.21066666666666667,
+          "isolated_page_faults": 160,
+          "isolated_runtime_ns": 360900,
+          "isolated_runtime_ms": 0.3609,
+          "shared_runtime_ns": 2730200,
+          "shared_runtime_ms": 2.7302,
+          "slowdown": 7.564976447769466
+        },
+        "1": {
+          "page_faults": 509,
+          "page_replacements": 373,
+          "disk_reads": 509,
+          "disk_writes": 64,
+          "total_disk_io": 573,
+          "accesses": 1500,
+          "page_fault_rate": 0.3393333333333333,
+          "isolated_page_faults": 180,
+          "isolated_runtime_ns": 361300,
+          "isolated_runtime_ms": 0.3613,
+          "shared_runtime_ns": 5085600,
+          "shared_runtime_ms": 5.0856,
+          "slowdown": 14.075837254359259
+        }
+      },
+      "system_total": {
+        "page_faults": 825,
+        "page_replacements": 553,
+        "disk_reads": 825,
+        "disk_writes": 77,
+        "total_disk_io": 902
+      },
+      "allocation_type": "local",
+      "trial": 7,
+      "runtime_ns": 8168500,
+      "runtime_ms": 8.1685,
+      "total_accesses": 3000,
+      "throughput": 367264.49164473277,
+      "working_set_sizes": {
+        "0": 160,
+        "1": 180
+      },
+      "aggregate_wss": 340,
+      "memory_ratio_to_wss": 0.8,
+      "worst_case_slowdown": 14.075837254359259,
+      "mean_slowdown": 10.820406851064362,
+      "fairness_metrics": {
+        "basis": "slowdown",
+        "jains_index": 0.9169963385261403,
+        "variance": 21.195654221393546,
+        "cv": 0.30086025859320364,
+        "max_ratio": 1.860658437146823,
+        "mean": 10.820406851064362,
+        "std": 3.2554304032948966,
+        "min": 7.564976447769466,
+        "max": 14.075837254359259
+      },
+      "runtime_records": [
+        {
+          "mode": "shared_total",
+          "process_id": null,
+          "workload_name": "streaming",
+          "algorithm": "NRU",
+          "allocation_policy": "LocalAllocation",
+          "memory_frames": 272,
+          "repetition_id": 7,
+          "duration_ns": 8168500,
+          "metadata": {
+            "interleave": "random"
+          },
+          "duration_ms": 8.1685
+        },
+        {
+          "mode": "shared",
+          "process_id": 0,
+          "workload_name": "streaming",
+          "algorithm": "NRU",
+          "allocation_policy": "LocalAllocation",
+          "memory_frames": 272,
+          "repetition_id": 7,
+          "duration_ns": 2730200,
+          "metadata": {
+            "interleave": "random"
+          },
+          "duration_ms": 2.7302
+        },
+        {
+          "mode": "isolation",
+          "process_id": 0,
+          "workload_name": "streaming",
+          "algorithm": "NRU",
+          "allocation_policy": "LocalAllocation",
+          "memory_frames": 272,
+          "repetition_id": 7,
+          "duration_ns": 360900,
+          "metadata": {
+            "trace_kind": "synthetic"
+          },
+          "duration_ms": 0.3609
+        },
+        {
+          "mode": "shared",
+          "process_id": 1,
+          "workload_name": "streaming",
+          "algorithm": "NRU",
+          "allocation_policy": "LocalAllocation",
+          "memory_frames": 272,
+          "repetition_id": 7,
+          "duration_ns": 5085600,
+          "metadata": {
+            "interleave": "random"
+          },
+          "duration_ms": 5.0856
+        },
+        {
+          "mode": "isolation",
+          "process_id": 1,
+          "workload_name": "streaming",
+          "algorithm": "NRU",
+          "allocation_policy": "LocalAllocation",
+          "memory_frames": 272,
+          "repetition_id": 7,
+          "duration_ns": 361300,
+          "metadata": {
+            "trace_kind": "synthetic"
+          },
+          "duration_ms": 0.3613
+        }
+      ],
+      "workload_kind": "synthetic",
+      "workload_label": "streaming",
+      "trace_name": null
+    },
+    {
+      "per_process": {
+        "0": {
+          "page_faults": 374,
+          "page_replacements": 238,
+          "disk_reads": 374,
+          "disk_writes": 10,
+          "total_disk_io": 384,
+          "accesses": 1500,
+          "page_fault_rate": 0.24933333333333332,
+          "isolated_page_faults": 160,
+          "isolated_runtime_ns": 345000,
+          "isolated_runtime_ms": 0.345,
+          "shared_runtime_ns": 3458400,
+          "shared_runtime_ms": 3.4584,
+          "slowdown": 10.024347826086956
+        },
+        "1": {
+          "page_faults": 417,
+          "page_replacements": 281,
+          "disk_reads": 417,
+          "disk_writes": 25,
+          "total_disk_io": 442,
+          "accesses": 1500,
+          "page_fault_rate": 0.278,
+          "isolated_page_faults": 180,
+          "isolated_runtime_ns": 355300,
+          "isolated_runtime_ms": 0.3553,
+          "shared_runtime_ns": 3949100,
+          "shared_runtime_ms": 3.9491,
+          "slowdown": 11.114832535885167
+        }
+      },
+      "system_total": {
+        "page_faults": 791,
+        "page_replacements": 519,
+        "disk_reads": 791,
+        "disk_writes": 35,
+        "total_disk_io": 826
+      },
+      "allocation_type": "local",
+      "trial": 8,
+      "runtime_ns": 7760300,
+      "runtime_ms": 7.7603,
+      "total_accesses": 3000,
+      "throughput": 386582.99292553123,
+      "working_set_sizes": {
+        "0": 160,
+        "1": 180
+      },
+      "aggregate_wss": 340,
+      "memory_ratio_to_wss": 0.8,
+      "worst_case_slowdown": 11.114832535885167,
+      "mean_slowdown": 10.569590180986062,
+      "fairness_metrics": {
+        "basis": "slowdown",
+        "jains_index": 0.9973459524338624,
+        "variance": 0.5945784511518446,
+        "cv": 0.05158595040704206,
+        "max_ratio": 1.1087836065464907,
+        "mean": 10.569590180986062,
+        "std": 0.5452423548991057,
+        "min": 10.024347826086956,
+        "max": 11.114832535885167
+      },
+      "runtime_records": [
+        {
+          "mode": "shared_total",
+          "process_id": null,
+          "workload_name": "streaming",
+          "algorithm": "NRU",
+          "allocation_policy": "LocalAllocation",
+          "memory_frames": 272,
+          "repetition_id": 8,
+          "duration_ns": 7760300,
+          "metadata": {
+            "interleave": "random"
+          },
+          "duration_ms": 7.7603
+        },
+        {
+          "mode": "shared",
+          "process_id": 0,
+          "workload_name": "streaming",
+          "algorithm": "NRU",
+          "allocation_policy": "LocalAllocation",
+          "memory_frames": 272,
+          "repetition_id": 8,
+          "duration_ns": 3458400,
+          "metadata": {
+            "interleave": "random"
+          },
+          "duration_ms": 3.4584
+        },
+        {
+          "mode": "isolation",
+          "process_id": 0,
+          "workload_name": "streaming",
+          "algorithm": "NRU",
+          "allocation_policy": "LocalAllocation",
+          "memory_frames": 272,
+          "repetition_id": 8,
+          "duration_ns": 345000,
+          "metadata": {
+            "trace_kind": "synthetic"
+          },
+          "duration_ms": 0.345
+        },
+        {
+          "mode": "shared",
+          "process_id": 1,
+          "workload_name": "streaming",
+          "algorithm": "NRU",
+          "allocation_policy": "LocalAllocation",
+          "memory_frames": 272,
+          "repetition_id": 8,
+          "duration_ns": 3949100,
+          "metadata": {
+            "interleave": "random"
+          },
+          "duration_ms": 3.9491
+        },
+        {
+          "mode": "isolation",
+          "process_id": 1,
+          "workload_name": "streaming",
+          "algorithm": "NRU",
+          "allocation_policy": "LocalAllocation",
+          "memory_frames": 272,
+          "repetition_id": 8,
+          "duration_ns": 355300,
+          "metadata": {
+            "trace_kind": "synthetic"
+          },
+          "duration_ms": 0.3553
+        }
+      ],
+      "workload_kind": "synthetic",
+      "workload_label": "streaming",
+      "trace_name": null
+    },
+    {
+      "per_process": {
+        "0": {
+          "page_faults": 335,
+          "page_replacements": 199,
+          "disk_reads": 335,
+          "disk_writes": 27,
+          "total_disk_io": 362,
+          "accesses": 1500,
+          "page_fault_rate": 0.22333333333333333,
+          "isolated_page_faults": 160,
+          "isolated_runtime_ns": 356600,
+          "isolated_runtime_ms": 0.3566,
+          "shared_runtime_ns": 2987000,
+          "shared_runtime_ms": 2.987,
+          "slowdown": 8.37633202467751
+        },
+        "1": {
+          "page_faults": 510,
+          "page_replacements": 374,
+          "disk_reads": 510,
+          "disk_writes": 75,
+          "total_disk_io": 585,
+          "accesses": 1500,
+          "page_fault_rate": 0.34,
+          "isolated_page_faults": 180,
+          "isolated_runtime_ns": 376900,
+          "isolated_runtime_ms": 0.3769,
+          "shared_runtime_ns": 5158500,
+          "shared_runtime_ms": 5.1585,
+          "slowdown": 13.686654284956221
+        }
+      },
+      "system_total": {
+        "page_faults": 845,
+        "page_replacements": 573,
+        "disk_reads": 845,
+        "disk_writes": 102,
+        "total_disk_io": 947
+      },
+      "allocation_type": "local",
+      "trial": 9,
+      "runtime_ns": 8499800,
+      "runtime_ms": 8.4998,
+      "total_accesses": 3000,
+      "throughput": 352949.4811642627,
+      "working_set_sizes": {
+        "0": 160,
+        "1": 180
+      },
+      "aggregate_wss": 340,
+      "memory_ratio_to_wss": 0.8,
+      "worst_case_slowdown": 13.686654284956221,
+      "mean_slowdown": 11.031493154816864,
+      "fairness_metrics": {
+        "basis": "slowdown",
+        "jains_index": 0.9452409754386345,
+        "variance": 14.099761254005802,
+        "cv": 0.24068918802528455,
+        "max_ratio": 1.6339674984986237,
+        "mean": 11.031493154816864,
+        "std": 2.655161130139356,
+        "min": 8.37633202467751,
+        "max": 13.686654284956221
+      },
+      "runtime_records": [
+        {
+          "mode": "shared_total",
+          "process_id": null,
+          "workload_name": "streaming",
+          "algorithm": "NRU",
+          "allocation_policy": "LocalAllocation",
+          "memory_frames": 272,
+          "repetition_id": 9,
+          "duration_ns": 8499800,
+          "metadata": {
+            "interleave": "random"
+          },
+          "duration_ms": 8.4998
+        },
+        {
+          "mode": "shared",
+          "process_id": 0,
+          "workload_name": "streaming",
+          "algorithm": "NRU",
+          "allocation_policy": "LocalAllocation",
+          "memory_frames": 272,
+          "repetition_id": 9,
+          "duration_ns": 2987000,
+          "metadata": {
+            "interleave": "random"
+          },
+          "duration_ms": 2.987
+        },
+        {
+          "mode": "isolation",
+          "process_id": 0,
+          "workload_name": "streaming",
+          "algorithm": "NRU",
+          "allocation_policy": "LocalAllocation",
+          "memory_frames": 272,
+          "repetition_id": 9,
+          "duration_ns": 356600,
+          "metadata": {
+            "trace_kind": "synthetic"
+          },
+          "duration_ms": 0.3566
+        },
+        {
+          "mode": "shared",
+          "process_id": 1,
+          "workload_name": "streaming",
+          "algorithm": "NRU",
+          "allocation_policy": "LocalAllocation",
+          "memory_frames": 272,
+          "repetition_id": 9,
+          "duration_ns": 5158500,
+          "metadata": {
+            "interleave": "random"
+          },
+          "duration_ms": 5.1585
+        },
+        {
+          "mode": "isolation",
+          "process_id": 1,
+          "workload_name": "streaming",
+          "algorithm": "NRU",
+          "allocation_policy": "LocalAllocation",
+          "memory_frames": 272,
+          "repetition_id": 9,
+          "duration_ns": 376900,
+          "metadata": {
+            "trace_kind": "synthetic"
+          },
+          "duration_ms": 0.3769
+        }
+      ],
+      "workload_kind": "synthetic",
+      "workload_label": "streaming",
+      "trace_name": null
+    }
+  ]
+}

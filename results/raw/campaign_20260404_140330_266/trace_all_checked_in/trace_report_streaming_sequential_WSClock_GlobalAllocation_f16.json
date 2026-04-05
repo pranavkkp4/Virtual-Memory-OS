@@ -1,0 +1,1629 @@
+{
+  "system": {
+    "page_faults": {
+      "mean": 16.0,
+      "std": 0.0,
+      "ci_95": [
+        16.0,
+        16.0
+      ]
+    },
+    "page_replacements": {
+      "mean": 0.0,
+      "std": 0.0,
+      "ci_95": [
+        0.0,
+        0.0
+      ]
+    },
+    "disk_reads": {
+      "mean": 16.0,
+      "std": 0.0,
+      "ci_95": [
+        16.0,
+        16.0
+      ]
+    },
+    "disk_writes": {
+      "mean": 0.0,
+      "std": 0.0,
+      "ci_95": [
+        0.0,
+        0.0
+      ]
+    },
+    "total_disk_io": {
+      "mean": 16.0,
+      "std": 0.0,
+      "ci_95": [
+        16.0,
+        16.0
+      ]
+    },
+    "throughput": {
+      "mean": 792184.0909978598,
+      "std": 73357.02717917456,
+      "ci_95": [
+        746716.9344979065,
+        837651.2474978132
+      ]
+    },
+    "runtime_ms": {
+      "mean": 0.0204,
+      "std": 0.002194538675895233,
+      "ci_95": [
+        0.01903981083668484,
+        0.021760189163315163
+      ]
+    },
+    "worst_case_slowdown": {
+      "mean": 1.4741548942370097,
+      "std": 0.08563453100934452,
+      "ci_95": [
+        1.4210780620244399,
+        1.5272317264495796
+      ]
+    },
+    "mean_slowdown": {
+      "mean": 1.415626437370014,
+      "std": 0.07083439818164222,
+      "ci_95": [
+        1.3717228225215234,
+        1.4595300522185046
+      ]
+    }
+  },
+  "per_process": {
+    "0": {
+      "accesses": {
+        "mean": 8.0,
+        "std": 0.0,
+        "ci_95": [
+          8.0,
+          8.0
+        ]
+      },
+      "page_faults": {
+        "mean": 8.0,
+        "std": 0.0,
+        "ci_95": [
+          8.0,
+          8.0
+        ]
+      },
+      "page_fault_rate": {
+        "mean": 1.0,
+        "std": 0.0,
+        "ci_95": [
+          1.0,
+          1.0
+        ]
+      },
+      "shared_runtime_ms": {
+        "mean": 0.00729,
+        "std": 0.0008595929269136642,
+        "ci_95": [
+          0.006757218784114905,
+          0.007822781215885094
+        ]
+      },
+      "isolated_runtime_ms": {
+        "mean": 0.00532,
+        "std": 0.0006144916598294887,
+        "ci_95": [
+          0.004939134123345239,
+          0.005700865876654761
+        ]
+      },
+      "slowdown": {
+        "mean": 1.3742922941259033,
+        "std": 0.10806313571141532,
+        "ci_95": [
+          1.3073140686961047,
+          1.4412705195557018
+        ]
+      }
+    },
+    "1": {
+      "accesses": {
+        "mean": 8.0,
+        "std": 0.0,
+        "ci_95": [
+          8.0,
+          8.0
+        ]
+      },
+      "page_faults": {
+        "mean": 8.0,
+        "std": 0.0,
+        "ci_95": [
+          8.0,
+          8.0
+        ]
+      },
+      "page_fault_rate": {
+        "mean": 1.0,
+        "std": 0.0,
+        "ci_95": [
+          1.0,
+          1.0
+        ]
+      },
+      "shared_runtime_ms": {
+        "mean": 0.00732,
+        "std": 0.0006523802572120036,
+        "ci_95": [
+          0.006915650527389982,
+          0.007724349472610018
+        ]
+      },
+      "isolated_runtime_ms": {
+        "mean": 0.00502,
+        "std": 0.00023579652245103188,
+        "ci_95": [
+          0.004873851801242711,
+          0.005166148198757289
+        ]
+      },
+      "slowdown": {
+        "mean": 1.4569605806141248,
+        "std": 0.08596277252152626,
+        "ci_95": [
+          1.403680302204537,
+          1.5102408590237126
+        ]
+      }
+    }
+  },
+  "fairness_metrics": {
+    "jains_index": {
+      "mean": 0.9968196040188106,
+      "std": 0.005382793244787047,
+      "ci_95": [
+        0.9934833142006607,
+        1.0001558938369606
+      ]
+    },
+    "variance": {
+      "mean": 0.012449238423309887,
+      "std": 0.02003953869271066,
+      "ci_95": [
+        2.860365981429032e-05,
+        0.02486987318680548
+      ]
+    },
+    "cv": {
+      "mean": 0.04159220384541456,
+      "std": 0.03860332250511058,
+      "ci_95": [
+        0.01766561666964202,
+        0.0655187910211871
+      ]
+    },
+    "max_ratio": {
+      "mean": 1.0903950007253813,
+      "std": 0.08945758744707442,
+      "ci_95": [
+        1.0349486135833585,
+        1.145841387867404
+      ]
+    },
+    "mean": {
+      "mean": 1.415626437370014,
+      "std": 0.07083439818164222,
+      "ci_95": [
+        1.3717228225215234,
+        1.4595300522185046
+      ]
+    },
+    "std": {
+      "mean": 0.0585284568669958,
+      "std": 0.052905944358107394,
+      "ci_95": [
+        0.025737012823979957,
+        0.09131990091001164
+      ]
+    },
+    "min": {
+      "mean": 1.3570979805030183,
+      "std": 0.09110339690245804,
+      "ci_95": [
+        1.3006315100921595,
+        1.4135644509138772
+      ]
+    },
+    "max": {
+      "mean": 1.4741548942370097,
+      "std": 0.08563453100934452,
+      "ci_95": [
+        1.4210780620244399,
+        1.5272317264495796
+      ]
+    },
+    "basis": "slowdown"
+  },
+  "aggregate_wss": {
+    "mean": 16.0,
+    "std": 0.0,
+    "ci_95": [
+      16.0,
+      16.0
+    ]
+  },
+  "memory_ratio_to_wss": {
+    "mean": 1.0,
+    "std": 0.0,
+    "ci_95": [
+      1.0,
+      1.0
+    ]
+  },
+  "workload_kind": "trace",
+  "workload_label": "trace-driven",
+  "trace_name": "report_streaming_sequential",
+  "config": {
+    "algorithm": "WSClock",
+    "allocation_policy": "GlobalAllocation",
+    "total_frames": 16,
+    "num_trials": 10,
+    "warmup_runs": 1,
+    "interleave": "trace-order",
+    "workload_kind": "trace",
+    "workload_label": "trace-driven",
+    "trace_file": "C:\\Users\\Pranav\\Desktop\\CU Denver\\Operating Systems\\Virtual Memory\\workloads\\traces\\report_streaming_sequential.csv",
+    "trace_name": "report_streaming_sequential",
+    "process_count": 2
+  },
+  "trial_results": [
+    {
+      "per_process": {
+        "0": {
+          "accesses": 8,
+          "page_faults": 8,
+          "page_fault_rate": 1.0,
+          "pages_in_memory": 8,
+          "isolated_page_faults": 8,
+          "isolated_runtime_ns": 6600,
+          "isolated_runtime_ms": 0.0066,
+          "shared_runtime_ns": 9200,
+          "shared_runtime_ms": 0.0092,
+          "slowdown": 1.393939393939394
+        },
+        "1": {
+          "accesses": 8,
+          "page_faults": 8,
+          "page_fault_rate": 1.0,
+          "pages_in_memory": 8,
+          "isolated_page_faults": 8,
+          "isolated_runtime_ns": 5500,
+          "isolated_runtime_ms": 0.0055,
+          "shared_runtime_ns": 9000,
+          "shared_runtime_ms": 0.009,
+          "slowdown": 1.6363636363636365
+        }
+      },
+      "system_total": {
+        "page_faults": 16,
+        "page_replacements": 0,
+        "disk_reads": 16,
+        "disk_writes": 0,
+        "total_disk_io": 16
+      },
+      "allocation_type": "global",
+      "trial": 0,
+      "runtime_ns": 25800,
+      "runtime_ms": 0.0258,
+      "total_accesses": 16,
+      "throughput": 620155.0387596899,
+      "working_set_sizes": {
+        "0": 8,
+        "1": 8
+      },
+      "aggregate_wss": 16,
+      "memory_ratio_to_wss": 1.0,
+      "worst_case_slowdown": 1.6363636363636365,
+      "mean_slowdown": 1.5151515151515151,
+      "fairness_metrics": {
+        "basis": "slowdown",
+        "jains_index": 0.9936406995230523,
+        "variance": 0.029384756657483933,
+        "cv": 0.08,
+        "max_ratio": 1.1739130434782608,
+        "mean": 1.5151515151515151,
+        "std": 0.12121212121212122,
+        "min": 1.393939393939394,
+        "max": 1.6363636363636365
+      },
+      "runtime_records": [
+        {
+          "mode": "shared_total",
+          "process_id": null,
+          "workload_name": "trace-driven",
+          "algorithm": "WSClock",
+          "allocation_policy": "GlobalAllocation",
+          "memory_frames": 16,
+          "repetition_id": 0,
+          "duration_ns": 25800,
+          "metadata": {
+            "interleave": "trace-order"
+          },
+          "duration_ms": 0.0258
+        },
+        {
+          "mode": "shared",
+          "process_id": 0,
+          "workload_name": "report_streaming_sequential",
+          "algorithm": "WSClock",
+          "allocation_policy": "GlobalAllocation",
+          "memory_frames": 16,
+          "repetition_id": 0,
+          "duration_ns": 9200,
+          "metadata": {
+            "interleave": "trace-order"
+          },
+          "duration_ms": 0.0092
+        },
+        {
+          "mode": "isolation",
+          "process_id": 0,
+          "workload_name": "report_streaming_sequential",
+          "algorithm": "WSClock",
+          "allocation_policy": "GlobalAllocation",
+          "memory_frames": 16,
+          "repetition_id": 0,
+          "duration_ns": 6600,
+          "metadata": {
+            "trace_kind": "trace"
+          },
+          "duration_ms": 0.0066
+        },
+        {
+          "mode": "shared",
+          "process_id": 1,
+          "workload_name": "report_streaming_sequential",
+          "algorithm": "WSClock",
+          "allocation_policy": "GlobalAllocation",
+          "memory_frames": 16,
+          "repetition_id": 0,
+          "duration_ns": 9000,
+          "metadata": {
+            "interleave": "trace-order"
+          },
+          "duration_ms": 0.009
+        },
+        {
+          "mode": "isolation",
+          "process_id": 1,
+          "workload_name": "report_streaming_sequential",
+          "algorithm": "WSClock",
+          "allocation_policy": "GlobalAllocation",
+          "memory_frames": 16,
+          "repetition_id": 0,
+          "duration_ns": 5500,
+          "metadata": {
+            "trace_kind": "trace"
+          },
+          "duration_ms": 0.0055
+        }
+      ],
+      "workload_kind": "trace",
+      "workload_label": "trace-driven",
+      "trace_name": "report_streaming_sequential"
+    },
+    {
+      "per_process": {
+        "0": {
+          "accesses": 8,
+          "page_faults": 8,
+          "page_fault_rate": 1.0,
+          "pages_in_memory": 8,
+          "isolated_page_faults": 8,
+          "isolated_runtime_ns": 5400,
+          "isolated_runtime_ms": 0.0054,
+          "shared_runtime_ns": 8700,
+          "shared_runtime_ms": 0.0087,
+          "slowdown": 1.6111111111111112
+        },
+        "1": {
+          "accesses": 8,
+          "page_faults": 8,
+          "page_fault_rate": 1.0,
+          "pages_in_memory": 8,
+          "isolated_page_faults": 8,
+          "isolated_runtime_ns": 5200,
+          "isolated_runtime_ms": 0.0052,
+          "shared_runtime_ns": 7900,
+          "shared_runtime_ms": 0.0079,
+          "slowdown": 1.5192307692307692
+        }
+      },
+      "system_total": {
+        "page_faults": 16,
+        "page_replacements": 0,
+        "disk_reads": 16,
+        "disk_writes": 0,
+        "total_disk_io": 16
+      },
+      "allocation_type": "global",
+      "trial": 1,
+      "runtime_ns": 23300,
+      "runtime_ms": 0.0233,
+      "total_accesses": 16,
+      "throughput": 686695.278969957,
+      "working_set_sizes": {
+        "0": 8,
+        "1": 8
+      },
+      "aggregate_wss": 16,
+      "memory_ratio_to_wss": 1.0,
+      "worst_case_slowdown": 1.6111111111111112,
+      "mean_slowdown": 1.5651709401709402,
+      "fairness_metrics": {
+        "basis": "slowdown",
+        "jains_index": 0.9991392289092461,
+        "variance": 0.004220998612024264,
+        "cv": 0.02935153583617751,
+        "max_ratio": 1.060478199718706,
+        "mean": 1.5651709401709402,
+        "std": 0.045940170940171,
+        "min": 1.5192307692307692,
+        "max": 1.6111111111111112
+      },
+      "runtime_records": [
+        {
+          "mode": "shared_total",
+          "process_id": null,
+          "workload_name": "trace-driven",
+          "algorithm": "WSClock",
+          "allocation_policy": "GlobalAllocation",
+          "memory_frames": 16,
+          "repetition_id": 1,
+          "duration_ns": 23300,
+          "metadata": {
+            "interleave": "trace-order"
+          },
+          "duration_ms": 0.0233
+        },
+        {
+          "mode": "shared",
+          "process_id": 0,
+          "workload_name": "report_streaming_sequential",
+          "algorithm": "WSClock",
+          "allocation_policy": "GlobalAllocation",
+          "memory_frames": 16,
+          "repetition_id": 1,
+          "duration_ns": 8700,
+          "metadata": {
+            "interleave": "trace-order"
+          },
+          "duration_ms": 0.0087
+        },
+        {
+          "mode": "isolation",
+          "process_id": 0,
+          "workload_name": "report_streaming_sequential",
+          "algorithm": "WSClock",
+          "allocation_policy": "GlobalAllocation",
+          "memory_frames": 16,
+          "repetition_id": 1,
+          "duration_ns": 5400,
+          "metadata": {
+            "trace_kind": "trace"
+          },
+          "duration_ms": 0.0054
+        },
+        {
+          "mode": "shared",
+          "process_id": 1,
+          "workload_name": "report_streaming_sequential",
+          "algorithm": "WSClock",
+          "allocation_policy": "GlobalAllocation",
+          "memory_frames": 16,
+          "repetition_id": 1,
+          "duration_ns": 7900,
+          "metadata": {
+            "interleave": "trace-order"
+          },
+          "duration_ms": 0.0079
+        },
+        {
+          "mode": "isolation",
+          "process_id": 1,
+          "workload_name": "report_streaming_sequential",
+          "algorithm": "WSClock",
+          "allocation_policy": "GlobalAllocation",
+          "memory_frames": 16,
+          "repetition_id": 1,
+          "duration_ns": 5200,
+          "metadata": {
+            "trace_kind": "trace"
+          },
+          "duration_ms": 0.0052
+        }
+      ],
+      "workload_kind": "trace",
+      "workload_label": "trace-driven",
+      "trace_name": "report_streaming_sequential"
+    },
+    {
+      "per_process": {
+        "0": {
+          "accesses": 8,
+          "page_faults": 8,
+          "page_fault_rate": 1.0,
+          "pages_in_memory": 8,
+          "isolated_page_faults": 8,
+          "isolated_runtime_ns": 6400,
+          "isolated_runtime_ms": 0.0064,
+          "shared_runtime_ns": 7400,
+          "shared_runtime_ms": 0.0074,
+          "slowdown": 1.15625
+        },
+        "1": {
+          "accesses": 8,
+          "page_faults": 8,
+          "page_fault_rate": 1.0,
+          "pages_in_memory": 8,
+          "isolated_page_faults": 8,
+          "isolated_runtime_ns": 5000,
+          "isolated_runtime_ms": 0.005,
+          "shared_runtime_ns": 7600,
+          "shared_runtime_ms": 0.0076,
+          "slowdown": 1.52
+        }
+      },
+      "system_total": {
+        "page_faults": 16,
+        "page_replacements": 0,
+        "disk_reads": 16,
+        "disk_writes": 0,
+        "total_disk_io": 16
+      },
+      "allocation_type": "global",
+      "trial": 2,
+      "runtime_ns": 20400,
+      "runtime_ms": 0.0204,
+      "total_accesses": 16,
+      "throughput": 784313.725490196,
+      "working_set_sizes": {
+        "0": 8,
+        "1": 8
+      },
+      "aggregate_wss": 16,
+      "memory_ratio_to_wss": 1.0,
+      "worst_case_slowdown": 1.52,
+      "mean_slowdown": 1.338125,
+      "fairness_metrics": {
+        "basis": "slowdown",
+        "jains_index": 0.9818614382758546,
+        "variance": 0.06615703125000001,
+        "cv": 0.1359177954226997,
+        "max_ratio": 1.3145945945945947,
+        "mean": 1.338125,
+        "std": 0.181875,
+        "min": 1.15625,
+        "max": 1.52
+      },
+      "runtime_records": [
+        {
+          "mode": "shared_total",
+          "process_id": null,
+          "workload_name": "trace-driven",
+          "algorithm": "WSClock",
+          "allocation_policy": "GlobalAllocation",
+          "memory_frames": 16,
+          "repetition_id": 2,
+          "duration_ns": 20400,
+          "metadata": {
+            "interleave": "trace-order"
+          },
+          "duration_ms": 0.0204
+        },
+        {
+          "mode": "shared",
+          "process_id": 0,
+          "workload_name": "report_streaming_sequential",
+          "algorithm": "WSClock",
+          "allocation_policy": "GlobalAllocation",
+          "memory_frames": 16,
+          "repetition_id": 2,
+          "duration_ns": 7400,
+          "metadata": {
+            "interleave": "trace-order"
+          },
+          "duration_ms": 0.0074
+        },
+        {
+          "mode": "isolation",
+          "process_id": 0,
+          "workload_name": "report_streaming_sequential",
+          "algorithm": "WSClock",
+          "allocation_policy": "GlobalAllocation",
+          "memory_frames": 16,
+          "repetition_id": 2,
+          "duration_ns": 6400,
+          "metadata": {
+            "trace_kind": "trace"
+          },
+          "duration_ms": 0.0064
+        },
+        {
+          "mode": "shared",
+          "process_id": 1,
+          "workload_name": "report_streaming_sequential",
+          "algorithm": "WSClock",
+          "allocation_policy": "GlobalAllocation",
+          "memory_frames": 16,
+          "repetition_id": 2,
+          "duration_ns": 7600,
+          "metadata": {
+            "interleave": "trace-order"
+          },
+          "duration_ms": 0.0076
+        },
+        {
+          "mode": "isolation",
+          "process_id": 1,
+          "workload_name": "report_streaming_sequential",
+          "algorithm": "WSClock",
+          "allocation_policy": "GlobalAllocation",
+          "memory_frames": 16,
+          "repetition_id": 2,
+          "duration_ns": 5000,
+          "metadata": {
+            "trace_kind": "trace"
+          },
+          "duration_ms": 0.005
+        }
+      ],
+      "workload_kind": "trace",
+      "workload_label": "trace-driven",
+      "trace_name": "report_streaming_sequential"
+    },
+    {
+      "per_process": {
+        "0": {
+          "accesses": 8,
+          "page_faults": 8,
+          "page_fault_rate": 1.0,
+          "pages_in_memory": 8,
+          "isolated_page_faults": 8,
+          "isolated_runtime_ns": 5100,
+          "isolated_runtime_ms": 0.0051,
+          "shared_runtime_ns": 6900,
+          "shared_runtime_ms": 0.0069,
+          "slowdown": 1.3529411764705883
+        },
+        "1": {
+          "accesses": 8,
+          "page_faults": 8,
+          "page_fault_rate": 1.0,
+          "pages_in_memory": 8,
+          "isolated_page_faults": 8,
+          "isolated_runtime_ns": 5100,
+          "isolated_runtime_ms": 0.0051,
+          "shared_runtime_ns": 7100,
+          "shared_runtime_ms": 0.0071,
+          "slowdown": 1.392156862745098
+        }
+      },
+      "system_total": {
+        "page_faults": 16,
+        "page_replacements": 0,
+        "disk_reads": 16,
+        "disk_writes": 0,
+        "total_disk_io": 16
+      },
+      "allocation_type": "global",
+      "trial": 3,
+      "runtime_ns": 19800,
+      "runtime_ms": 0.0198,
+      "total_accesses": 16,
+      "throughput": 808080.808080808,
+      "working_set_sizes": {
+        "0": 8,
+        "1": 8
+      },
+      "aggregate_wss": 16,
+      "memory_ratio_to_wss": 1.0,
+      "worst_case_slowdown": 1.392156862745098,
+      "mean_slowdown": 1.3725490196078431,
+      "fairness_metrics": {
+        "basis": "slowdown",
+        "jains_index": 0.9997959600081618,
+        "variance": 0.0007689350249903828,
+        "cv": 0.014285714285714235,
+        "max_ratio": 1.0289855072463767,
+        "mean": 1.3725490196078431,
+        "std": 0.019607843137254832,
+        "min": 1.3529411764705883,
+        "max": 1.392156862745098
+      },
+      "runtime_records": [
+        {
+          "mode": "shared_total",
+          "process_id": null,
+          "workload_name": "trace-driven",
+          "algorithm": "WSClock",
+          "allocation_policy": "GlobalAllocation",
+          "memory_frames": 16,
+          "repetition_id": 3,
+          "duration_ns": 19800,
+          "metadata": {
+            "interleave": "trace-order"
+          },
+          "duration_ms": 0.0198
+        },
+        {
+          "mode": "shared",
+          "process_id": 0,
+          "workload_name": "report_streaming_sequential",
+          "algorithm": "WSClock",
+          "allocation_policy": "GlobalAllocation",
+          "memory_frames": 16,
+          "repetition_id": 3,
+          "duration_ns": 6900,
+          "metadata": {
+            "interleave": "trace-order"
+          },
+          "duration_ms": 0.0069
+        },
+        {
+          "mode": "isolation",
+          "process_id": 0,
+          "workload_name": "report_streaming_sequential",
+          "algorithm": "WSClock",
+          "allocation_policy": "GlobalAllocation",
+          "memory_frames": 16,
+          "repetition_id": 3,
+          "duration_ns": 5100,
+          "metadata": {
+            "trace_kind": "trace"
+          },
+          "duration_ms": 0.0051
+        },
+        {
+          "mode": "shared",
+          "process_id": 1,
+          "workload_name": "report_streaming_sequential",
+          "algorithm": "WSClock",
+          "allocation_policy": "GlobalAllocation",
+          "memory_frames": 16,
+          "repetition_id": 3,
+          "duration_ns": 7100,
+          "metadata": {
+            "interleave": "trace-order"
+          },
+          "duration_ms": 0.0071
+        },
+        {
+          "mode": "isolation",
+          "process_id": 1,
+          "workload_name": "report_streaming_sequential",
+          "algorithm": "WSClock",
+          "allocation_policy": "GlobalAllocation",
+          "memory_frames": 16,
+          "repetition_id": 3,
+          "duration_ns": 5100,
+          "metadata": {
+            "trace_kind": "trace"
+          },
+          "duration_ms": 0.0051
+        }
+      ],
+      "workload_kind": "trace",
+      "workload_label": "trace-driven",
+      "trace_name": "report_streaming_sequential"
+    },
+    {
+      "per_process": {
+        "0": {
+          "accesses": 8,
+          "page_faults": 8,
+          "page_fault_rate": 1.0,
+          "pages_in_memory": 8,
+          "isolated_page_faults": 8,
+          "isolated_runtime_ns": 5000,
+          "isolated_runtime_ms": 0.005,
+          "shared_runtime_ns": 6800,
+          "shared_runtime_ms": 0.0068,
+          "slowdown": 1.36
+        },
+        "1": {
+          "accesses": 8,
+          "page_faults": 8,
+          "page_fault_rate": 1.0,
+          "pages_in_memory": 8,
+          "isolated_page_faults": 8,
+          "isolated_runtime_ns": 4900,
+          "isolated_runtime_ms": 0.0049,
+          "shared_runtime_ns": 6900,
+          "shared_runtime_ms": 0.0069,
+          "slowdown": 1.4081632653061225
+        }
+      },
+      "system_total": {
+        "page_faults": 16,
+        "page_replacements": 0,
+        "disk_reads": 16,
+        "disk_writes": 0,
+        "total_disk_io": 16
+      },
+      "allocation_type": "global",
+      "trial": 4,
+      "runtime_ns": 19500,
+      "runtime_ms": 0.0195,
+      "total_accesses": 16,
+      "throughput": 820512.8205128205,
+      "working_set_sizes": {
+        "0": 8,
+        "1": 8
+      },
+      "aggregate_wss": 16,
+      "memory_ratio_to_wss": 1.0,
+      "worst_case_slowdown": 1.4081632653061225,
+      "mean_slowdown": 1.3840816326530612,
+      "fairness_metrics": {
+        "basis": "slowdown",
+        "jains_index": 0.9996973665061145,
+        "variance": 0.0011598500624739648,
+        "cv": 0.01739899734591563,
+        "max_ratio": 1.0354141656662665,
+        "mean": 1.3840816326530612,
+        "std": 0.02408163265306118,
+        "min": 1.36,
+        "max": 1.4081632653061225
+      },
+      "runtime_records": [
+        {
+          "mode": "shared_total",
+          "process_id": null,
+          "workload_name": "trace-driven",
+          "algorithm": "WSClock",
+          "allocation_policy": "GlobalAllocation",
+          "memory_frames": 16,
+          "repetition_id": 4,
+          "duration_ns": 19500,
+          "metadata": {
+            "interleave": "trace-order"
+          },
+          "duration_ms": 0.0195
+        },
+        {
+          "mode": "shared",
+          "process_id": 0,
+          "workload_name": "report_streaming_sequential",
+          "algorithm": "WSClock",
+          "allocation_policy": "GlobalAllocation",
+          "memory_frames": 16,
+          "repetition_id": 4,
+          "duration_ns": 6800,
+          "metadata": {
+            "interleave": "trace-order"
+          },
+          "duration_ms": 0.0068
+        },
+        {
+          "mode": "isolation",
+          "process_id": 0,
+          "workload_name": "report_streaming_sequential",
+          "algorithm": "WSClock",
+          "allocation_policy": "GlobalAllocation",
+          "memory_frames": 16,
+          "repetition_id": 4,
+          "duration_ns": 5000,
+          "metadata": {
+            "trace_kind": "trace"
+          },
+          "duration_ms": 0.005
+        },
+        {
+          "mode": "shared",
+          "process_id": 1,
+          "workload_name": "report_streaming_sequential",
+          "algorithm": "WSClock",
+          "allocation_policy": "GlobalAllocation",
+          "memory_frames": 16,
+          "repetition_id": 4,
+          "duration_ns": 6900,
+          "metadata": {
+            "interleave": "trace-order"
+          },
+          "duration_ms": 0.0069
+        },
+        {
+          "mode": "isolation",
+          "process_id": 1,
+          "workload_name": "report_streaming_sequential",
+          "algorithm": "WSClock",
+          "allocation_policy": "GlobalAllocation",
+          "memory_frames": 16,
+          "repetition_id": 4,
+          "duration_ns": 4900,
+          "metadata": {
+            "trace_kind": "trace"
+          },
+          "duration_ms": 0.0049
+        }
+      ],
+      "workload_kind": "trace",
+      "workload_label": "trace-driven",
+      "trace_name": "report_streaming_sequential"
+    },
+    {
+      "per_process": {
+        "0": {
+          "accesses": 8,
+          "page_faults": 8,
+          "page_fault_rate": 1.0,
+          "pages_in_memory": 8,
+          "isolated_page_faults": 8,
+          "isolated_runtime_ns": 5100,
+          "isolated_runtime_ms": 0.0051,
+          "shared_runtime_ns": 6600,
+          "shared_runtime_ms": 0.0066,
+          "slowdown": 1.2941176470588236
+        },
+        "1": {
+          "accesses": 8,
+          "page_faults": 8,
+          "page_fault_rate": 1.0,
+          "pages_in_memory": 8,
+          "isolated_page_faults": 8,
+          "isolated_runtime_ns": 4800,
+          "isolated_runtime_ms": 0.0048,
+          "shared_runtime_ns": 7100,
+          "shared_runtime_ms": 0.0071,
+          "slowdown": 1.4791666666666667
+        }
+      },
+      "system_total": {
+        "page_faults": 16,
+        "page_replacements": 0,
+        "disk_reads": 16,
+        "disk_writes": 0,
+        "total_disk_io": 16
+      },
+      "allocation_type": "global",
+      "trial": 5,
+      "runtime_ns": 19200,
+      "runtime_ms": 0.0192,
+      "total_accesses": 16,
+      "throughput": 833333.3333333334,
+      "working_set_sizes": {
+        "0": 8,
+        "1": 8
+      },
+      "aggregate_wss": 16,
+      "memory_ratio_to_wss": 1.0,
+      "worst_case_slowdown": 1.4791666666666667,
+      "mean_slowdown": 1.3866421568627452,
+      "fairness_metrics": {
+        "basis": "slowdown",
+        "jains_index": 0.9955674313808208,
+        "variance": 0.01712156982891196,
+        "cv": 0.06672558550596554,
+        "max_ratio": 1.1429924242424243,
+        "mean": 1.3866421568627452,
+        "std": 0.09252450980392157,
+        "min": 1.2941176470588236,
+        "max": 1.4791666666666667
+      },
+      "runtime_records": [
+        {
+          "mode": "shared_total",
+          "process_id": null,
+          "workload_name": "trace-driven",
+          "algorithm": "WSClock",
+          "allocation_policy": "GlobalAllocation",
+          "memory_frames": 16,
+          "repetition_id": 5,
+          "duration_ns": 19200,
+          "metadata": {
+            "interleave": "trace-order"
+          },
+          "duration_ms": 0.0192
+        },
+        {
+          "mode": "shared",
+          "process_id": 0,
+          "workload_name": "report_streaming_sequential",
+          "algorithm": "WSClock",
+          "allocation_policy": "GlobalAllocation",
+          "memory_frames": 16,
+          "repetition_id": 5,
+          "duration_ns": 6600,
+          "metadata": {
+            "interleave": "trace-order"
+          },
+          "duration_ms": 0.0066
+        },
+        {
+          "mode": "isolation",
+          "process_id": 0,
+          "workload_name": "report_streaming_sequential",
+          "algorithm": "WSClock",
+          "allocation_policy": "GlobalAllocation",
+          "memory_frames": 16,
+          "repetition_id": 5,
+          "duration_ns": 5100,
+          "metadata": {
+            "trace_kind": "trace"
+          },
+          "duration_ms": 0.0051
+        },
+        {
+          "mode": "shared",
+          "process_id": 1,
+          "workload_name": "report_streaming_sequential",
+          "algorithm": "WSClock",
+          "allocation_policy": "GlobalAllocation",
+          "memory_frames": 16,
+          "repetition_id": 5,
+          "duration_ns": 7100,
+          "metadata": {
+            "interleave": "trace-order"
+          },
+          "duration_ms": 0.0071
+        },
+        {
+          "mode": "isolation",
+          "process_id": 1,
+          "workload_name": "report_streaming_sequential",
+          "algorithm": "WSClock",
+          "allocation_policy": "GlobalAllocation",
+          "memory_frames": 16,
+          "repetition_id": 5,
+          "duration_ns": 4800,
+          "metadata": {
+            "trace_kind": "trace"
+          },
+          "duration_ms": 0.0048
+        }
+      ],
+      "workload_kind": "trace",
+      "workload_label": "trace-driven",
+      "trace_name": "report_streaming_sequential"
+    },
+    {
+      "per_process": {
+        "0": {
+          "accesses": 8,
+          "page_faults": 8,
+          "page_fault_rate": 1.0,
+          "pages_in_memory": 8,
+          "isolated_page_faults": 8,
+          "isolated_runtime_ns": 5000,
+          "isolated_runtime_ms": 0.005,
+          "shared_runtime_ns": 6900,
+          "shared_runtime_ms": 0.0069,
+          "slowdown": 1.38
+        },
+        "1": {
+          "accesses": 8,
+          "page_faults": 8,
+          "page_fault_rate": 1.0,
+          "pages_in_memory": 8,
+          "isolated_page_faults": 8,
+          "isolated_runtime_ns": 4900,
+          "isolated_runtime_ms": 0.0049,
+          "shared_runtime_ns": 7000,
+          "shared_runtime_ms": 0.007,
+          "slowdown": 1.4285714285714286
+        }
+      },
+      "system_total": {
+        "page_faults": 16,
+        "page_replacements": 0,
+        "disk_reads": 16,
+        "disk_writes": 0,
+        "total_disk_io": 16
+      },
+      "allocation_type": "global",
+      "trial": 6,
+      "runtime_ns": 19200,
+      "runtime_ms": 0.0192,
+      "total_accesses": 16,
+      "throughput": 833333.3333333334,
+      "working_set_sizes": {
+        "0": 8,
+        "1": 8
+      },
+      "aggregate_wss": 16,
+      "memory_ratio_to_wss": 1.0,
+      "worst_case_slowdown": 1.4285714285714286,
+      "mean_slowdown": 1.4042857142857144,
+      "fairness_metrics": {
+        "basis": "slowdown",
+        "jains_index": 0.9997010070578888,
+        "variance": 0.0011795918367347006,
+        "cv": 0.01729399796541205,
+        "max_ratio": 1.0351966873706004,
+        "mean": 1.4042857142857144,
+        "std": 0.024285714285714355,
+        "min": 1.38,
+        "max": 1.4285714285714286
+      },
+      "runtime_records": [
+        {
+          "mode": "shared_total",
+          "process_id": null,
+          "workload_name": "trace-driven",
+          "algorithm": "WSClock",
+          "allocation_policy": "GlobalAllocation",
+          "memory_frames": 16,
+          "repetition_id": 6,
+          "duration_ns": 19200,
+          "metadata": {
+            "interleave": "trace-order"
+          },
+          "duration_ms": 0.0192
+        },
+        {
+          "mode": "shared",
+          "process_id": 0,
+          "workload_name": "report_streaming_sequential",
+          "algorithm": "WSClock",
+          "allocation_policy": "GlobalAllocation",
+          "memory_frames": 16,
+          "repetition_id": 6,
+          "duration_ns": 6900,
+          "metadata": {
+            "interleave": "trace-order"
+          },
+          "duration_ms": 0.0069
+        },
+        {
+          "mode": "isolation",
+          "process_id": 0,
+          "workload_name": "report_streaming_sequential",
+          "algorithm": "WSClock",
+          "allocation_policy": "GlobalAllocation",
+          "memory_frames": 16,
+          "repetition_id": 6,
+          "duration_ns": 5000,
+          "metadata": {
+            "trace_kind": "trace"
+          },
+          "duration_ms": 0.005
+        },
+        {
+          "mode": "shared",
+          "process_id": 1,
+          "workload_name": "report_streaming_sequential",
+          "algorithm": "WSClock",
+          "allocation_policy": "GlobalAllocation",
+          "memory_frames": 16,
+          "repetition_id": 6,
+          "duration_ns": 7000,
+          "metadata": {
+            "interleave": "trace-order"
+          },
+          "duration_ms": 0.007
+        },
+        {
+          "mode": "isolation",
+          "process_id": 1,
+          "workload_name": "report_streaming_sequential",
+          "algorithm": "WSClock",
+          "allocation_policy": "GlobalAllocation",
+          "memory_frames": 16,
+          "repetition_id": 6,
+          "duration_ns": 4900,
+          "metadata": {
+            "trace_kind": "trace"
+          },
+          "duration_ms": 0.0049
+        }
+      ],
+      "workload_kind": "trace",
+      "workload_label": "trace-driven",
+      "trace_name": "report_streaming_sequential"
+    },
+    {
+      "per_process": {
+        "0": {
+          "accesses": 8,
+          "page_faults": 8,
+          "page_fault_rate": 1.0,
+          "pages_in_memory": 8,
+          "isolated_page_faults": 8,
+          "isolated_runtime_ns": 5000,
+          "isolated_runtime_ms": 0.005,
+          "shared_runtime_ns": 6800,
+          "shared_runtime_ms": 0.0068,
+          "slowdown": 1.36
+        },
+        "1": {
+          "accesses": 8,
+          "page_faults": 8,
+          "page_fault_rate": 1.0,
+          "pages_in_memory": 8,
+          "isolated_page_faults": 8,
+          "isolated_runtime_ns": 5000,
+          "isolated_runtime_ms": 0.005,
+          "shared_runtime_ns": 7000,
+          "shared_runtime_ms": 0.007,
+          "slowdown": 1.4
+        }
+      },
+      "system_total": {
+        "page_faults": 16,
+        "page_replacements": 0,
+        "disk_reads": 16,
+        "disk_writes": 0,
+        "total_disk_io": 16
+      },
+      "allocation_type": "global",
+      "trial": 7,
+      "runtime_ns": 19000,
+      "runtime_ms": 0.019,
+      "total_accesses": 16,
+      "throughput": 842105.2631578947,
+      "working_set_sizes": {
+        "0": 8,
+        "1": 8
+      },
+      "aggregate_wss": 16,
+      "memory_ratio_to_wss": 1.0,
+      "worst_case_slowdown": 1.4,
+      "mean_slowdown": 1.38,
+      "fairness_metrics": {
+        "basis": "slowdown",
+        "jains_index": 0.9997900041999159,
+        "variance": 0.0007999999999999926,
+        "cv": 0.01449275362318834,
+        "max_ratio": 1.0294117647058822,
+        "mean": 1.38,
+        "std": 0.019999999999999907,
+        "min": 1.36,
+        "max": 1.4
+      },
+      "runtime_records": [
+        {
+          "mode": "shared_total",
+          "process_id": null,
+          "workload_name": "trace-driven",
+          "algorithm": "WSClock",
+          "allocation_policy": "GlobalAllocation",
+          "memory_frames": 16,
+          "repetition_id": 7,
+          "duration_ns": 19000,
+          "metadata": {
+            "interleave": "trace-order"
+          },
+          "duration_ms": 0.019
+        },
+        {
+          "mode": "shared",
+          "process_id": 0,
+          "workload_name": "report_streaming_sequential",
+          "algorithm": "WSClock",
+          "allocation_policy": "GlobalAllocation",
+          "memory_frames": 16,
+          "repetition_id": 7,
+          "duration_ns": 6800,
+          "metadata": {
+            "interleave": "trace-order"
+          },
+          "duration_ms": 0.0068
+        },
+        {
+          "mode": "isolation",
+          "process_id": 0,
+          "workload_name": "report_streaming_sequential",
+          "algorithm": "WSClock",
+          "allocation_policy": "GlobalAllocation",
+          "memory_frames": 16,
+          "repetition_id": 7,
+          "duration_ns": 5000,
+          "metadata": {
+            "trace_kind": "trace"
+          },
+          "duration_ms": 0.005
+        },
+        {
+          "mode": "shared",
+          "process_id": 1,
+          "workload_name": "report_streaming_sequential",
+          "algorithm": "WSClock",
+          "allocation_policy": "GlobalAllocation",
+          "memory_frames": 16,
+          "repetition_id": 7,
+          "duration_ns": 7000,
+          "metadata": {
+            "interleave": "trace-order"
+          },
+          "duration_ms": 0.007
+        },
+        {
+          "mode": "isolation",
+          "process_id": 1,
+          "workload_name": "report_streaming_sequential",
+          "algorithm": "WSClock",
+          "allocation_policy": "GlobalAllocation",
+          "memory_frames": 16,
+          "repetition_id": 7,
+          "duration_ns": 5000,
+          "metadata": {
+            "trace_kind": "trace"
+          },
+          "duration_ms": 0.005
+        }
+      ],
+      "workload_kind": "trace",
+      "workload_label": "trace-driven",
+      "trace_name": "report_streaming_sequential"
+    },
+    {
+      "per_process": {
+        "0": {
+          "accesses": 8,
+          "page_faults": 8,
+          "page_fault_rate": 1.0,
+          "pages_in_memory": 8,
+          "isolated_page_faults": 8,
+          "isolated_runtime_ns": 4900,
+          "isolated_runtime_ms": 0.0049,
+          "shared_runtime_ns": 6800,
+          "shared_runtime_ms": 0.0068,
+          "slowdown": 1.3877551020408163
+        },
+        "1": {
+          "accesses": 8,
+          "page_faults": 8,
+          "page_fault_rate": 1.0,
+          "pages_in_memory": 8,
+          "isolated_page_faults": 8,
+          "isolated_runtime_ns": 5200,
+          "isolated_runtime_ms": 0.0052,
+          "shared_runtime_ns": 6800,
+          "shared_runtime_ms": 0.0068,
+          "slowdown": 1.3076923076923077
+        }
+      },
+      "system_total": {
+        "page_faults": 16,
+        "page_replacements": 0,
+        "disk_reads": 16,
+        "disk_writes": 0,
+        "total_disk_io": 16
+      },
+      "allocation_type": "global",
+      "trial": 8,
+      "runtime_ns": 19100,
+      "runtime_ms": 0.0191,
+      "total_accesses": 16,
+      "throughput": 837696.335078534,
+      "working_set_sizes": {
+        "0": 8,
+        "1": 8
+      },
+      "aggregate_wss": 16,
+      "memory_ratio_to_wss": 1.0,
+      "worst_case_slowdown": 1.3877551020408163,
+      "mean_slowdown": 1.347723704866562,
+      "fairness_metrics": {
+        "basis": "slowdown",
+        "jains_index": 0.9991185112634673,
+        "variance": 0.0032050255194457904,
+        "cv": 0.02970297029702969,
+        "max_ratio": 1.0612244897959184,
+        "mean": 1.347723704866562,
+        "std": 0.0400313971742543,
+        "min": 1.3076923076923077,
+        "max": 1.3877551020408163
+      },
+      "runtime_records": [
+        {
+          "mode": "shared_total",
+          "process_id": null,
+          "workload_name": "trace-driven",
+          "algorithm": "WSClock",
+          "allocation_policy": "GlobalAllocation",
+          "memory_frames": 16,
+          "repetition_id": 8,
+          "duration_ns": 19100,
+          "metadata": {
+            "interleave": "trace-order"
+          },
+          "duration_ms": 0.0191
+        },
+        {
+          "mode": "shared",
+          "process_id": 0,
+          "workload_name": "report_streaming_sequential",
+          "algorithm": "WSClock",
+          "allocation_policy": "GlobalAllocation",
+          "memory_frames": 16,
+          "repetition_id": 8,
+          "duration_ns": 6800,
+          "metadata": {
+            "interleave": "trace-order"
+          },
+          "duration_ms": 0.0068
+        },
+        {
+          "mode": "isolation",
+          "process_id": 0,
+          "workload_name": "report_streaming_sequential",
+          "algorithm": "WSClock",
+          "allocation_policy": "GlobalAllocation",
+          "memory_frames": 16,
+          "repetition_id": 8,
+          "duration_ns": 4900,
+          "metadata": {
+            "trace_kind": "trace"
+          },
+          "duration_ms": 0.0049
+        },
+        {
+          "mode": "shared",
+          "process_id": 1,
+          "workload_name": "report_streaming_sequential",
+          "algorithm": "WSClock",
+          "allocation_policy": "GlobalAllocation",
+          "memory_frames": 16,
+          "repetition_id": 8,
+          "duration_ns": 6800,
+          "metadata": {
+            "interleave": "trace-order"
+          },
+          "duration_ms": 0.0068
+        },
+        {
+          "mode": "isolation",
+          "process_id": 1,
+          "workload_name": "report_streaming_sequential",
+          "algorithm": "WSClock",
+          "allocation_policy": "GlobalAllocation",
+          "memory_frames": 16,
+          "repetition_id": 8,
+          "duration_ns": 5200,
+          "metadata": {
+            "trace_kind": "trace"
+          },
+          "duration_ms": 0.0052
+        }
+      ],
+      "workload_kind": "trace",
+      "workload_label": "trace-driven",
+      "trace_name": "report_streaming_sequential"
+    },
+    {
+      "per_process": {
+        "0": {
+          "accesses": 8,
+          "page_faults": 8,
+          "page_fault_rate": 1.0,
+          "pages_in_memory": 8,
+          "isolated_page_faults": 8,
+          "isolated_runtime_ns": 4700,
+          "isolated_runtime_ms": 0.0047,
+          "shared_runtime_ns": 6800,
+          "shared_runtime_ms": 0.0068,
+          "slowdown": 1.446808510638298
+        },
+        "1": {
+          "accesses": 8,
+          "page_faults": 8,
+          "page_fault_rate": 1.0,
+          "pages_in_memory": 8,
+          "isolated_page_faults": 8,
+          "isolated_runtime_ns": 4600,
+          "isolated_runtime_ms": 0.0046,
+          "shared_runtime_ns": 6800,
+          "shared_runtime_ms": 0.0068,
+          "slowdown": 1.4782608695652173
+        }
+      },
+      "system_total": {
+        "page_faults": 16,
+        "page_replacements": 0,
+        "disk_reads": 16,
+        "disk_writes": 0,
+        "total_disk_io": 16
+      },
+      "allocation_type": "global",
+      "trial": 9,
+      "runtime_ns": 18700,
+      "runtime_ms": 0.0187,
+      "total_accesses": 16,
+      "throughput": 855614.973262032,
+      "working_set_sizes": {
+        "0": 8,
+        "1": 8
+      },
+      "aggregate_wss": 16,
+      "memory_ratio_to_wss": 1.0,
+      "worst_case_slowdown": 1.4782608695652173,
+      "mean_slowdown": 1.4625346901017577,
+      "fairness_metrics": {
+        "basis": "slowdown",
+        "jains_index": 0.9998843930635839,
+        "variance": 0.0004946254410338811,
+        "cv": 0.010752688172042946,
+        "max_ratio": 1.0217391304347825,
+        "mean": 1.4625346901017577,
+        "std": 0.015726179463459666,
+        "min": 1.446808510638298,
+        "max": 1.4782608695652173
+      },
+      "runtime_records": [
+        {
+          "mode": "shared_total",
+          "process_id": null,
+          "workload_name": "trace-driven",
+          "algorithm": "WSClock",
+          "allocation_policy": "GlobalAllocation",
+          "memory_frames": 16,
+          "repetition_id": 9,
+          "duration_ns": 18700,
+          "metadata": {
+            "interleave": "trace-order"
+          },
+          "duration_ms": 0.0187
+        },
+        {
+          "mode": "shared",
+          "process_id": 0,
+          "workload_name": "report_streaming_sequential",
+          "algorithm": "WSClock",
+          "allocation_policy": "GlobalAllocation",
+          "memory_frames": 16,
+          "repetition_id": 9,
+          "duration_ns": 6800,
+          "metadata": {
+            "interleave": "trace-order"
+          },
+          "duration_ms": 0.0068
+        },
+        {
+          "mode": "isolation",
+          "process_id": 0,
+          "workload_name": "report_streaming_sequential",
+          "algorithm": "WSClock",
+          "allocation_policy": "GlobalAllocation",
+          "memory_frames": 16,
+          "repetition_id": 9,
+          "duration_ns": 4700,
+          "metadata": {
+            "trace_kind": "trace"
+          },
+          "duration_ms": 0.0047
+        },
+        {
+          "mode": "shared",
+          "process_id": 1,
+          "workload_name": "report_streaming_sequential",
+          "algorithm": "WSClock",
+          "allocation_policy": "GlobalAllocation",
+          "memory_frames": 16,
+          "repetition_id": 9,
+          "duration_ns": 6800,
+          "metadata": {
+            "interleave": "trace-order"
+          },
+          "duration_ms": 0.0068
+        },
+        {
+          "mode": "isolation",
+          "process_id": 1,
+          "workload_name": "report_streaming_sequential",
+          "algorithm": "WSClock",
+          "allocation_policy": "GlobalAllocation",
+          "memory_frames": 16,
+          "repetition_id": 9,
+          "duration_ns": 4600,
+          "metadata": {
+            "trace_kind": "trace"
+          },
+          "duration_ms": 0.0046
+        }
+      ],
+      "workload_kind": "trace",
+      "workload_label": "trace-driven",
+      "trace_name": "report_streaming_sequential"
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "generated_at": "2026-04-04T20:07:56.969577+00:00",
+  "repo_root": "C:\\Users\\Pranav\\Desktop\\CU Denver\\Operating Systems\\Virtual Memory",
+  "output_root": "C:\\Users\\Pranav\\Desktop\\CU Denver\\Operating Systems\\Virtual Memory\\results\\baselines_20260404",
+  "repetitions": 8,
+  "stability_threshold_cv": 0.1,
+  "tight_threshold_cv": 0.05,
+  "profiles": [
+    {
+      "name": "pressure_pinned",
+      "wrapper": "pinned",
+      "results_subdir": "pressure_pinned",
+      "benchmark_args": [
+        "--experiment",
+        "pressure",
+        "--repetitions",
+        "8"
+      ],
+      "pinned_cores": [
+        2
+      ]
+    },
+    {
+      "name": "trace_quiet",
+      "wrapper": "quiet",
+      "results_subdir": "trace_quiet",
+      "benchmark_args": [
+        "--experiment",
+        "trace",
+        "--trace-file",
+        "workloads\\traces\\sample_trace.csv",
+        "--repetitions",
+        "8"
+      ],
+      "pinned_cores": []
+    }
+  ]
+}

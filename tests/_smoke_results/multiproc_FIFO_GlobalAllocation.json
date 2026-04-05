@@ -1,0 +1,688 @@
+{
+  "system": {
+    "page_faults": {
+      "mean": 8388.3,
+      "std": 67.3038631877844,
+      "ci_95": [
+        8346.584633411654,
+        8430.015366588344
+      ]
+    },
+    "page_replacements": {
+      "mean": 8328.3,
+      "std": 67.3038631877844,
+      "ci_95": [
+        8286.584633411654,
+        8370.015366588344
+      ]
+    },
+    "disk_reads": {
+      "mean": 8388.3,
+      "std": 67.3038631877844,
+      "ci_95": [
+        8346.584633411654,
+        8430.015366588344
+      ]
+    },
+    "disk_writes": {
+      "mean": 3136.5,
+      "std": 52.15026366184547,
+      "ci_95": [
+        3104.17693170505,
+        3168.82306829495
+      ]
+    },
+    "total_disk_io": {
+      "mean": 11524.8,
+      "std": 85.20422524734322,
+      "ci_95": [
+        11471.989874061881,
+        11577.610125938118
+      ]
+    },
+    "throughput": {
+      "mean": 1427432.7456528589,
+      "std": 52564.5192914402,
+      "ci_95": [
+        1394852.9190585879,
+        1460012.5722471299
+      ]
+    }
+  },
+  "per_process": {
+    "0": {
+      "accesses": {
+        "mean": 5000.0,
+        "std": 0.0
+      },
+      "page_faults": {
+        "mean": 2192.0,
+        "std": 23.94159560263267
+      },
+      "page_fault_rate": {
+        "mean": 0.4384,
+        "std": 0.0047883191205265385
+      },
+      "slowdown": {
+        "mean": 5.096287237315259,
+        "std": 0.29406091502841925
+      }
+    },
+    "1": {
+      "accesses": {
+        "mean": 5000.0,
+        "std": 0.0
+      },
+      "page_faults": {
+        "mean": 4379.7,
+        "std": 42.85568807054671
+      },
+      "page_fault_rate": {
+        "mean": 0.8759400000000002,
+        "std": 0.008571137614109365
+      },
+      "slowdown": {
+        "mean": 1.194231492232478,
+        "std": 0.013070100142425805
+      }
+    },
+    "2": {
+      "accesses": {
+        "mean": 5000.0,
+        "std": 0.0
+      },
+      "page_faults": {
+        "mean": 1816.6,
+        "std": 22.49977777668037
+      },
+      "page_fault_rate": {
+        "mean": 0.36332,
+        "std": 0.004499955555336085
+      },
+      "slowdown": {
+        "mean": 7.722044004978329,
+        "std": 0.4002803484053106
+      }
+    }
+  },
+  "aggregate_wss": {
+    "mean": 351.7,
+    "std": 1.7916472867168918
+  },
+  "memory_ratio_to_wss": {
+    "mean": 0.1706043863331444,
+    "std": 0.0008722093100346013
+  },
+  "trial_results": [
+    {
+      "per_process": {
+        "0": {
+          "accesses": 5000,
+          "page_faults": 2217,
+          "page_fault_rate": 0.4434,
+          "pages_in_memory": 36,
+          "shared_runtime": 226700.0,
+          "isolated_runtime": 48000.0,
+          "isolated_page_faults": 430,
+          "slowdown": 4.722916666666666
+        },
+        "1": {
+          "accesses": 5000,
+          "page_faults": 4428,
+          "page_fault_rate": 0.8856,
+          "pages_in_memory": 6,
+          "shared_runtime": 447800.0,
+          "isolated_runtime": 367000.0,
+          "isolated_page_faults": 3620,
+          "slowdown": 1.2201634877384195
+        },
+        "2": {
+          "accesses": 5000,
+          "page_faults": 1821,
+          "page_fault_rate": 0.3642,
+          "pages_in_memory": 18,
+          "shared_runtime": 187100.0,
+          "isolated_runtime": 23800.0,
+          "isolated_page_faults": 188,
+          "slowdown": 7.861344537815126
+        }
+      },
+      "system_total": {
+        "page_faults": 8466,
+        "page_replacements": 8406,
+        "disk_reads": 8466,
+        "disk_writes": 3099,
+        "total_disk_io": 11565
+      },
+      "allocation_type": "global",
+      "trial": 0,
+      "simulation_time": 0.010698556900024414,
+      "total_accesses": 15000,
+      "throughput": 1402058.2532926258,
+      "working_set_sizes": {
+        "0": 83,
+        "1": 200,
+        "2": 65
+      },
+      "aggregate_wss": 348,
+      "memory_ratio_to_wss": 0.1724137931034483,
+      "runtime_model": {
+        "access_cost": 1.0,
+        "page_fault_cost": 100.0
+      }
+    },
+    {
+      "per_process": {
+        "0": {
+          "accesses": 5000,
+          "page_faults": 2180,
+          "page_fault_rate": 0.436,
+          "pages_in_memory": 19,
+          "shared_runtime": 223000.0,
+          "isolated_runtime": 44000.0,
+          "isolated_page_faults": 390,
+          "slowdown": 5.068181818181818
+        },
+        "1": {
+          "accesses": 5000,
+          "page_faults": 4372,
+          "page_fault_rate": 0.8744,
+          "pages_in_memory": 15,
+          "shared_runtime": 442200.0,
+          "isolated_runtime": 365300.0,
+          "isolated_page_faults": 3603,
+          "slowdown": 1.2105119080208049
+        },
+        "2": {
+          "accesses": 5000,
+          "page_faults": 1820,
+          "page_fault_rate": 0.364,
+          "pages_in_memory": 26,
+          "shared_runtime": 187000.0,
+          "isolated_runtime": 23600.0,
+          "isolated_page_faults": 186,
+          "slowdown": 7.923728813559322
+        }
+      },
+      "system_total": {
+        "page_faults": 8372,
+        "page_replacements": 8312,
+        "disk_reads": 8372,
+        "disk_writes": 3067,
+        "total_disk_io": 11439
+      },
+      "allocation_type": "global",
+      "trial": 1,
+      "simulation_time": 0.011449337005615234,
+      "total_accesses": 15000,
+      "throughput": 1310119.5285494148,
+      "working_set_sizes": {
+        "0": 85,
+        "1": 200,
+        "2": 68
+      },
+      "aggregate_wss": 353,
+      "memory_ratio_to_wss": 0.16997167138810199,
+      "runtime_model": {
+        "access_cost": 1.0,
+        "page_fault_cost": 100.0
+      }
+    },
+    {
+      "per_process": {
+        "0": {
+          "accesses": 5000,
+          "page_faults": 2223,
+          "page_fault_rate": 0.4446,
+          "pages_in_memory": 33,
+          "shared_runtime": 227300.0,
+          "isolated_runtime": 46900.0,
+          "isolated_page_faults": 419,
+          "slowdown": 4.846481876332622
+        },
+        "1": {
+          "accesses": 5000,
+          "page_faults": 4407,
+          "page_fault_rate": 0.8814,
+          "pages_in_memory": 7,
+          "shared_runtime": 445700.0,
+          "isolated_runtime": 374500.0,
+          "isolated_page_faults": 3695,
+          "slowdown": 1.1901201602136182
+        },
+        "2": {
+          "accesses": 5000,
+          "page_faults": 1828,
+          "page_fault_rate": 0.3656,
+          "pages_in_memory": 20,
+          "shared_runtime": 187800.0,
+          "isolated_runtime": 23800.0,
+          "isolated_page_faults": 188,
+          "slowdown": 7.890756302521009
+        }
+      },
+      "system_total": {
+        "page_faults": 8458,
+        "page_replacements": 8398,
+        "disk_reads": 8458,
+        "disk_writes": 3219,
+        "total_disk_io": 11677
+      },
+      "allocation_type": "global",
+      "trial": 2,
+      "simulation_time": 0.010766744613647461,
+      "total_accesses": 15000,
+      "throughput": 1393178.7683518236,
+      "working_set_sizes": {
+        "0": 85,
+        "1": 200,
+        "2": 67
+      },
+      "aggregate_wss": 352,
+      "memory_ratio_to_wss": 0.17045454545454544,
+      "runtime_model": {
+        "access_cost": 1.0,
+        "page_fault_cost": 100.0
+      }
+    },
+    {
+      "per_process": {
+        "0": {
+          "accesses": 5000,
+          "page_faults": 2198,
+          "page_fault_rate": 0.4396,
+          "pages_in_memory": 1,
+          "shared_runtime": 224800.0,
+          "isolated_runtime": 43000.0,
+          "isolated_page_faults": 380,
+          "slowdown": 5.227906976744186
+        },
+        "1": {
+          "accesses": 5000,
+          "page_faults": 4376,
+          "page_fault_rate": 0.8752,
+          "pages_in_memory": 38,
+          "shared_runtime": 442600.0,
+          "isolated_runtime": 366000.0,
+          "isolated_page_faults": 3610,
+          "slowdown": 1.2092896174863388
+        },
+        "2": {
+          "accesses": 5000,
+          "page_faults": 1854,
+          "page_fault_rate": 0.3708,
+          "pages_in_memory": 21,
+          "shared_runtime": 190400.0,
+          "isolated_runtime": 23900.0,
+          "isolated_page_faults": 189,
+          "slowdown": 7.96652719665272
+        }
+      },
+      "system_total": {
+        "page_faults": 8428,
+        "page_replacements": 8368,
+        "disk_reads": 8428,
+        "disk_writes": 3137,
+        "total_disk_io": 11565
+      },
+      "allocation_type": "global",
+      "trial": 3,
+      "simulation_time": 0.01023101806640625,
+      "total_accesses": 15000,
+      "throughput": 1466129.7539149888,
+      "working_set_sizes": {
+        "0": 85,
+        "1": 200,
+        "2": 69
+      },
+      "aggregate_wss": 354,
+      "memory_ratio_to_wss": 0.1694915254237288,
+      "runtime_model": {
+        "access_cost": 1.0,
+        "page_fault_cost": 100.0
+      }
+    },
+    {
+      "per_process": {
+        "0": {
+          "accesses": 5000,
+          "page_faults": 2148,
+          "page_fault_rate": 0.4296,
+          "pages_in_memory": 9,
+          "shared_runtime": 219800.0,
+          "isolated_runtime": 40100.0,
+          "isolated_page_faults": 351,
+          "slowdown": 5.4812967581047385
+        },
+        "1": {
+          "accesses": 5000,
+          "page_faults": 4409,
+          "page_fault_rate": 0.8818,
+          "pages_in_memory": 51,
+          "shared_runtime": 445900.0,
+          "isolated_runtime": 374800.0,
+          "isolated_page_faults": 3698,
+          "slowdown": 1.189701173959445
+        },
+        "2": {
+          "accesses": 5000,
+          "page_faults": 1775,
+          "page_fault_rate": 0.355,
+          "pages_in_memory": 0,
+          "shared_runtime": 182500.0,
+          "isolated_runtime": 22900.0,
+          "isolated_page_faults": 179,
+          "slowdown": 7.96943231441048
+        }
+      },
+      "system_total": {
+        "page_faults": 8332,
+        "page_replacements": 8272,
+        "disk_reads": 8332,
+        "disk_writes": 3144,
+        "total_disk_io": 11476
+      },
+      "allocation_type": "global",
+      "trial": 4,
+      "simulation_time": 0.010141611099243164,
+      "total_accesses": 15000,
+      "throughput": 1479054.940404824,
+      "working_set_sizes": {
+        "0": 86,
+        "1": 200,
+        "2": 64
+      },
+      "aggregate_wss": 350,
+      "memory_ratio_to_wss": 0.17142857142857143,
+      "runtime_model": {
+        "access_cost": 1.0,
+        "page_fault_cost": 100.0
+      }
+    },
+    {
+      "per_process": {
+        "0": {
+          "accesses": 5000,
+          "page_faults": 2184,
+          "page_fault_rate": 0.4368,
+          "pages_in_memory": 27,
+          "shared_runtime": 223400.0,
+          "isolated_runtime": 43000.0,
+          "isolated_page_faults": 380,
+          "slowdown": 5.195348837209302
+        },
+        "1": {
+          "accesses": 5000,
+          "page_faults": 4355,
+          "page_fault_rate": 0.871,
+          "pages_in_memory": 33,
+          "shared_runtime": 440500.0,
+          "isolated_runtime": 372200.0,
+          "isolated_page_faults": 3672,
+          "slowdown": 1.1835034927458357
+        },
+        "2": {
+          "accesses": 5000,
+          "page_faults": 1804,
+          "page_fault_rate": 0.3608,
+          "pages_in_memory": 0,
+          "shared_runtime": 185400.0,
+          "isolated_runtime": 21900.0,
+          "isolated_page_faults": 169,
+          "slowdown": 8.465753424657533
+        }
+      },
+      "system_total": {
+        "page_faults": 8343,
+        "page_replacements": 8283,
+        "disk_reads": 8343,
+        "disk_writes": 3195,
+        "total_disk_io": 11538
+      },
+      "allocation_type": "global",
+      "trial": 5,
+      "simulation_time": 0.010212182998657227,
+      "total_accesses": 15000,
+      "throughput": 1468833.8430649266,
+      "working_set_sizes": {
+        "0": 85,
+        "1": 200,
+        "2": 68
+      },
+      "aggregate_wss": 353,
+      "memory_ratio_to_wss": 0.16997167138810199,
+      "runtime_model": {
+        "access_cost": 1.0,
+        "page_fault_cost": 100.0
+      }
+    },
+    {
+      "per_process": {
+        "0": {
+          "accesses": 5000,
+          "page_faults": 2178,
+          "page_fault_rate": 0.4356,
+          "pages_in_memory": 0,
+          "shared_runtime": 222800.0,
+          "isolated_runtime": 46400.0,
+          "isolated_page_faults": 414,
+          "slowdown": 4.801724137931035
+        },
+        "1": {
+          "accesses": 5000,
+          "page_faults": 4363,
+          "page_fault_rate": 0.8726,
+          "pages_in_memory": 60,
+          "shared_runtime": 441300.0,
+          "isolated_runtime": 373400.0,
+          "isolated_page_faults": 3684,
+          "slowdown": 1.1818425281199785
+        },
+        "2": {
+          "accesses": 5000,
+          "page_faults": 1785,
+          "page_fault_rate": 0.357,
+          "pages_in_memory": 0,
+          "shared_runtime": 183500.0,
+          "isolated_runtime": 24400.0,
+          "isolated_page_faults": 194,
+          "slowdown": 7.520491803278689
+        }
+      },
+      "system_total": {
+        "page_faults": 8326,
+        "page_replacements": 8266,
+        "disk_reads": 8326,
+        "disk_writes": 3107,
+        "total_disk_io": 11433
+      },
+      "allocation_type": "global",
+      "trial": 6,
+      "simulation_time": 0.010164022445678711,
+      "total_accesses": 15000,
+      "throughput": 1475793.671272079,
+      "working_set_sizes": {
+        "0": 83,
+        "1": 200,
+        "2": 70
+      },
+      "aggregate_wss": 353,
+      "memory_ratio_to_wss": 0.16997167138810199,
+      "runtime_model": {
+        "access_cost": 1.0,
+        "page_fault_cost": 100.0
+      }
+    },
+    {
+      "per_process": {
+        "0": {
+          "accesses": 5000,
+          "page_faults": 2227,
+          "page_fault_rate": 0.4454,
+          "pages_in_memory": 27,
+          "shared_runtime": 227700.0,
+          "isolated_runtime": 47100.0,
+          "isolated_page_faults": 421,
+          "slowdown": 4.834394904458598
+        },
+        "1": {
+          "accesses": 5000,
+          "page_faults": 4403,
+          "page_fault_rate": 0.8806,
+          "pages_in_memory": 33,
+          "shared_runtime": 445300.0,
+          "isolated_runtime": 375600.0,
+          "isolated_page_faults": 3706,
+          "slowdown": 1.1855697550585729
+        },
+        "2": {
+          "accesses": 5000,
+          "page_faults": 1817,
+          "page_fault_rate": 0.3634,
+          "pages_in_memory": 0,
+          "shared_runtime": 186700.0,
+          "isolated_runtime": 26100.0,
+          "isolated_page_faults": 211,
+          "slowdown": 7.153256704980843
+        }
+      },
+      "system_total": {
+        "page_faults": 8447,
+        "page_replacements": 8387,
+        "disk_reads": 8447,
+        "disk_writes": 3056,
+        "total_disk_io": 11503
+      },
+      "allocation_type": "global",
+      "trial": 7,
+      "simulation_time": 0.010439872741699219,
+      "total_accesses": 15000,
+      "throughput": 1436799.1230474103,
+      "working_set_sizes": {
+        "0": 84,
+        "1": 200,
+        "2": 66
+      },
+      "aggregate_wss": 350,
+      "memory_ratio_to_wss": 0.17142857142857143,
+      "runtime_model": {
+        "access_cost": 1.0,
+        "page_fault_cost": 100.0
+      }
+    },
+    {
+      "per_process": {
+        "0": {
+          "accesses": 5000,
+          "page_faults": 2196,
+          "page_fault_rate": 0.4392,
+          "pages_in_memory": 31,
+          "shared_runtime": 224600.0,
+          "isolated_runtime": 39600.0,
+          "isolated_page_faults": 346,
+          "slowdown": 5.671717171717172
+        },
+        "1": {
+          "accesses": 5000,
+          "page_faults": 4413,
+          "page_fault_rate": 0.8826,
+          "pages_in_memory": 24,
+          "shared_runtime": 446300.0,
+          "isolated_runtime": 377400.0,
+          "isolated_page_faults": 3724,
+          "slowdown": 1.1825649178590356
+        },
+        "2": {
+          "accesses": 5000,
+          "page_faults": 1841,
+          "page_fault_rate": 0.3682,
+          "pages_in_memory": 5,
+          "shared_runtime": 189100.0,
+          "isolated_runtime": 26100.0,
+          "isolated_page_faults": 211,
+          "slowdown": 7.245210727969349
+        }
+      },
+      "system_total": {
+        "page_faults": 8450,
+        "page_replacements": 8390,
+        "disk_reads": 8450,
+        "disk_writes": 3193,
+        "total_disk_io": 11643
+      },
+      "allocation_type": "global",
+      "trial": 8,
+      "simulation_time": 0.01088261604309082,
+      "total_accesses": 15000,
+      "throughput": 1378345.0542228064,
+      "working_set_sizes": {
+        "0": 86,
+        "1": 200,
+        "2": 67
+      },
+      "aggregate_wss": 353,
+      "memory_ratio_to_wss": 0.16997167138810199,
+      "runtime_model": {
+        "access_cost": 1.0,
+        "page_fault_cost": 100.0
+      }
+    },
+    {
+      "per_process": {
+        "0": {
+          "accesses": 5000,
+          "page_faults": 2169,
+          "page_fault_rate": 0.4338,
+          "pages_in_memory": 24,
+          "shared_runtime": 221900.0,
+          "isolated_runtime": 43400.0,
+          "isolated_page_faults": 384,
+          "slowdown": 5.112903225806452
+        },
+        "1": {
+          "accesses": 5000,
+          "page_faults": 4271,
+          "page_fault_rate": 0.8542,
+          "pages_in_memory": 23,
+          "shared_runtime": 432100.0,
+          "isolated_runtime": 363400.0,
+          "isolated_page_faults": 3584,
+          "slowdown": 1.1890478811227299
+        },
+        "2": {
+          "accesses": 5000,
+          "page_faults": 1821,
+          "page_fault_rate": 0.3642,
+          "pages_in_memory": 13,
+          "shared_runtime": 187100.0,
+          "isolated_runtime": 25900.0,
+          "isolated_page_faults": 209,
+          "slowdown": 7.223938223938224
+        }
+      },
+      "system_total": {
+        "page_faults": 8261,
+        "page_replacements": 8201,
+        "disk_reads": 8261,
+        "disk_writes": 3148,
+        "total_disk_io": 11409
+      },
+      "allocation_type": "global",
+      "trial": 9,
+      "simulation_time": 0.010245800018310547,
+      "total_accesses": 15000,
+      "throughput": 1464014.5204076883,
+      "working_set_sizes": {
+        "0": 83,
+        "1": 200,
+        "2": 68
+      },
+      "aggregate_wss": 351,
+      "memory_ratio_to_wss": 0.17094017094017094,
+      "runtime_model": {
+        "access_cost": 1.0,
+        "page_fault_cost": 100.0
+      }
+    }
+  ]
+}

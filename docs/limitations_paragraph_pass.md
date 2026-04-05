@@ -1,0 +1,2 @@
+Slowdown measurement based on isolation vs. shared wall-clock timing is somewhat noisy, and our trace-driven inputs represent a realistic but limited set; as a result, the results are strongest for comparative trends across policies and memory-pressure settings rather than universal claims about all workloads or environments. Future work will improve host-level isolation to stabilize timing baselines and broaden trace diversity to better cover workload variability.
+

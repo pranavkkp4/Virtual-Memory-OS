@@ -1,0 +1,2 @@
+Slowdown measurement is implemented (via isolation vs. shared wall-clock replays) but remains somewhat noisy; therefore, the current progress-stage results are strongest as directional evidence about relative policy trends across memory-pressure settings rather than as definitive, broadly generalizable claims. Broader trace-driven workload diversity and the final repeated runs in the benchmark matrix are still being completed, and final conclusions will be based on the completed benchmark campaign and aggregated analysis.
+
