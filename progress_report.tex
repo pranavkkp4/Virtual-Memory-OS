@@ -416,15 +416,12 @@ H3 & Mixed workload, 4 procs, near WSS & 2.6449 $\rightarrow$ 3.2209 slowdown & 
 
 \section{Completed Work}
 
-Here’s what we’ve finished so far:
-
 To date, we have successfully implemented a suite of page replacement policies—namely FIFO, LRU, NRU, Second Chance, and WSClock—alongside global, local, and proportional frame-allocation strategies. To drive our evaluations, we developed synthetic workload generators capable of producing locality-heavy, streaming, random, mixed, loop, and thrashing access patterns. The simulation framework is further supported by automated experiment runners designed for repeated single-process and multi-process studies, as well as analytical helpers for generating summary statistics and comparing policy performance. Finally, we have established comprehensive documentation and a report skeleton structured around our three core research questions.
 
 
 
 Our original proposal described an emulator-based experimental plan; however, during implementation we refined the methodology and built a custom Python-based virtual memory simulator and trace-driven benchmarking framework instead. This change gave us tighter control over page replacement, frame allocation, workload generation, and measurement instrumentation while still supporting the same core research questions and evaluation goals.
 We also double-checked the repository for any problems with running the code or mismatches in our reporting. This review turned up a few practical issues that we had to fix before we could create the current campaign snapshot. These included cleaning up some runtime bugs in the allocation path, making sure WSClock worked correctly under eviction pressure, and making sure our documentation matched what was actually measured and reported.
-
 
 
 \section{Limitations and Future Work}
