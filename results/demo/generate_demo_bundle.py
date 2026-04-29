@@ -141,8 +141,9 @@ def build_demo_bundle(output_dir: str | Path) -> Path:
 
     _write_bundle_readme(directories["root"] / "README.md")
     copied_paths.append(directories["root"] / "README.md")
-    _write_manifest(directories["metadata"] / "bundle_manifest.json", directories["root"], copied_paths)
-    copied_paths.append(directories["metadata"] / "bundle_manifest.json")
+    manifest_path = directories["metadata"] / "bundle_manifest.json"
+    _write_manifest(manifest_path, directories["root"], copied_paths + [manifest_path])
+    copied_paths.append(manifest_path)
 
     return directories["root"]
 

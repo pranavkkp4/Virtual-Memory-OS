@@ -1,525 +1,244 @@
 \documentclass[conference]{IEEEtran}
 
 \usepackage[utf8]{inputenc}
-
+\usepackage{amsmath}
 \usepackage{booktabs}
-
 \usepackage{graphicx}
-
 \usepackage{url}
 
-\usepackage{amsmath}
-
 \newcommand{\file}[1]{\path{#1}}
-
 \emergencystretch=2em
 
-
-
-\title{Virtual Memory Replacement \& Allocation: Progress Report}
-
-
+\title{Virtual Memory Replacement \& Allocation: Efficiency--Fairness Trade-offs Under Memory Pressure}
 
 \author{%
-
   Pranav Kumar Kaliaperumal, Akanksha Gutal, Spandana Erukulla\\
-
   Department of Computer Science and Engineering\\
-
   CSCI 5573: Operating Systems\\
-
   University of Colorado Denver\\
-
 }
-
-
 
 \begin{document}
 
-
-
 \maketitle
 
-
-
 \begin{abstract}
-
-This progress report, current as of April 4, 2026, outlines the development of a virtual memory simulator and benchmarking framework created to analyze page replacement and frame allocation in environments running multiple programs. The simulator and experimental tools now support FIFO, LRU, NRU, Second Chance, and WSClock replacement algorithms, as well as global, local, and proportional allocation strategies. Workload drivers generate both synthetic and trace-based scenarios. The system streamlines parameter exploration, logs data on page faults and performance slowdowns using isolation-based tests, and outputs results as CSV and JSON files, along with visual plots. We have run the framework on both synthetic and trace-driven workloads, carrying out initial experiments including stress tests at the edge of total working-set memory. As we approach the final submission, we are broadening the evaluation (adding more workloads, traces, repetitions, and sensitivity analyses), refining key figures and tables and their explanations, and improving the packaging and documentation for reproducibility.
-
+This report presents a custom virtual memory simulator and trace-driven benchmarking framework for evaluating page replacement and frame allocation policies under multiprogrammed memory pressure. We implemented FIFO, LRU, NRU, Second Chance, and WSClock replacement together with global, local, and proportional allocation. Using synthetic and trace-driven workloads, repeated trials, and fairness-oriented runtime analysis, we evaluated policy behavior across multiple memory-pressure levels. The final campaign shows that H1 and H2 are supported, indicating that policies that improve fault behavior under pressure can still degrade fairness near the working-set boundary, while H3 is not supported. These results show that page-fault minimization alone is not sufficient to identify the best policy under mixed, fairness-sensitive workloads.
 \end{abstract}
 
+\section{Introduction}
+Virtual memory is one of the core abstractions in operating systems: it separates the address space seen by a process from the limited physical frames available in the machine. Demand paging lets programs exceed physical memory capacity, but it also forces the operating system to decide which resident pages to evict and how many frames each process should receive. These decisions directly affect page-fault frequency, disk activity, runtime, and the quality of service received by competing processes.
 
+This project connects directly to the operating-systems course topics of paging, page replacement, working sets, frame allocation, multiprogramming, and systems measurement. The course treatment explains the mechanisms; this report evaluates their interactions experimentally. In particular, it asks whether a policy that improves global efficiency can also hurt fairness when multiple processes compete near their aggregate working-set size (WSS).
 
-\section{Core Tables and Figures}
+Prior work established the theoretical importance of replacement choices and locality, including Belady's analysis of replacement algorithms and Denning's working-set model \cite{Belady1966,Denning1968,Denning1970}. Modern systems continue to revisit virtual memory overheads, allocation behavior, and measurement sensitivity as machines grow in memory capacity and complexity \cite{Basu2013,Park2020,Powers2019,Mytkowicz2009}. Our contribution is a controlled teaching-scale framework that combines replacement policy, allocation policy, workload generation, trace replay, and fairness metrics in one reproducible evaluation.
 
-\label{sec:core}
+We freeze the paper around the following claim: we built a custom virtual memory simulation and trace-driven benchmarking framework to evaluate how page replacement and frame allocation policies trade off efficiency and fairness under memory pressure, and we found that H1 and H2 are supported while H3 is not.
 
-
-
-
-This progress report is centered on a concise set of core evidence—three to four figures and three to four tables—that will be refined in the next phase for the final submission. Additional materials found in \file{results/} serve as supplementary resources.
-
-
-
-\subsection{Core Figures (Current Candidates)}
-For the final submission, we have identified a core set of candidate figures to visually communicate our primary findings, all currently generated and stored within the \file{results/figures/} directory. These include an evaluation of efficiency under memory pressure (\textbf{F1}: \file{page_faults_vs_memory_pressure.png}), an analysis of the worst-case fairness cost associated with different policies (\textbf{F2}: \file{worst_case_slowdown_vs_policy.png}), and a broader comparison of Jain's fairness index across allocation strategies (\textbf{F3}: \file{jains_fairness_vs_policy.png}). Additionally, we provide a trace-driven cross-check (\textbf{F4}: \file{trace_driven_comparison.png}) to validate our synthetic results against real-world access patterns. Should page limits allow, we also plan to include an auxiliary figure (\file{slowdown_variance_vs_memory_pressure.png}) to further illustrate the dispersion of fairness metrics.
-
-\subsection{Core Tables (Current Candidates)}
-Similarly, we have curated a set of core tables to summarize our quantitative data. The complete experimental matrix (\textbf{T1}) detailing version-locked factor levels and repetition counts is mirrored in Section~\ref{sec:matrix} and available in \file{docs/final_experiment_matrix.md}. Headline results outlining the best-performing policies for each workload are captured in \textbf{T2} (\file{results/tables/best_policy_by_workload.md}). The formal evaluation of our three research hypotheses (H1, H2, and H3) is synthesized in \textbf{T3} (\file{results/tables/hypothesis_summary.md}). Finally, \textbf{T4} offers a compact statistical summary—extracted from \file{final_aggregate_results.csv}—that focuses on the near-WSS pressure point, detailing means, standard deviations, confidence intervals for faults and slowdowns, as well as Jain's index and the coefficient of variation.
-
-
-
-\section{Executive Summary and Project Overview}
-
-Virtual memory helps computers use their resources more efficiently by letting programs work with more memory than what is physically available, a requirement increasingly vital in big memory servers and flat page table architectures \cite{Basu2013, Park2020}. When there's not enough physical memory to go around, the operating system has to choose which pages to remove and how to split up the available memory between different programs. Modern memory allocation, NVRAM integration, and compaction techniques all navigate these constraints \cite{Schwalb2015, Powers2019}. These choices have a big impact on how often page faults happen, how much disk activity is generated, and how fairly resources are shared among running programs.
-
-Our project looks at how page replacement and frame allocation work together, not just at replacement strategies on their own, reflecting modern trends that treat cache replacement and memory allocation as joint problems \cite{Ghandeharizadeh2015, Noor2025}. Earlier research, like Belady's, showed that basic approaches such as FIFO can fail in certain situations, while Denning's review highlighted the need for policies that keep data close to where it's needed and can adjust as programs change \cite{Belady1966,Denning1970}. We explored whether these well-known rankings still hold up or start to break down when several programs are fighting for scarce memory.
-
-\paragraph{Current Status.}
-
-At this point, the project has moved from just an idea to a working experimental setup that lets us evaluate both page replacement methods and frame allocation strategies using synthetic and trace-based workloads. The system can now run FIFO, LRU, NRU, Second Chance, and WSClock algorithms, and tries out global, local, and proportional ways to divide up memory. It automatically measures page faults, disk usage, slowdowns, and fairness, creating tables, summaries, and visualizations ready for analysis. Early results show that our framework can produce reliable comparisons and highlight real trade-offs between efficiency and fairness. So far, the evidence supports our first two hypotheses (H1 and H2), but the third (H3) seems weaker with the current data. These results are still early, so we’ll treat them as provisional until the final round of analysis and reporting is done.
-
-
-\section{System Architecture}
-\label{sec:architecture}
-
-\subsection{Software Architecture}
-The software architecture of our custom virtual memory simulator is built around three primary, interacting modules. The \textbf{Workload Generator} is responsible for parsing real-world CSV traces and synthesizing various memory access patterns (such as high-locality, streaming, and thrashing) to drive the simulation. Operating alongside it is the \textbf{Memory Manager}, a core component that handles the mapping of virtual to physical memory, manages the chosen frame allocation strategies (Global, Local, and Proportional), and maintains the page tables for multiprogrammed workloads. Finally, the \textbf{Policy Engine} encapsulates the logic for making page replacement decisions, actively implementing the FIFO, LRU, NRU, Second Chance, and WSClock algorithms.
-
-\subsection{Hardware Architecture}
-The simulator models a target hardware system featuring a single-tier storage hierarchy with configurable physical frames, allowing us to accurately simulate varying degrees of memory pressure. For execution, all experiments and benchmarks were run locally on a host machine equipped with a 12th Gen Intel Core i5-12400F processor (2.50 GHz, 6 cores), 16 GB of RAM, and an NVIDIA RTX 3050 GPU. To minimize host-OS interference and ensure measurement stability for wall-clock slowdown metrics, we utilized wrapper scripts to pin processes to specific CPU cores.
-\section{Research Questions and Hypotheses}
-
-Our study centers on three main research questions:
-
-
-
-\subsection{RQ1: Efficiency vs. Fairness}
-
-What pairings of page replacement and frame allocation can keep page faults low without sacrificing fairness between programs? We thought that LRU with global allocation would usually lead to fewer faults when memory is tight and locality is high, but that it might also make some processes less fairly treated.
-
-
-
-\subsection{RQ2: Memory-Pressure Thresholds}
-
-Is there a clear point where global allocation stops improving throughput and instead hurts fairness? We expected this shift to happen around the total working-set size, where even a small drop in available memory could suddenly cause much more interference between programs.
-
-
-
-\subsection{RQ3: Simpler Policies Under Heterogeneous Workloads}
-
-Can straightforward strategies like FIFO or NRU do better than more complex, history-based policies when fairness matters most? We thought that in some mixed workloads, pairing simple policies with local allocation could actually be better for fairness, even if they didn’t always minimize total page faults.
-
-
-
-\section{Operational Definitions and Current Measurement Support}
-
-In our project, we defined fairness mainly by looking at how much each process slowed down compared to when it ran by itself. To measure this, we recorded the actual runtime for each process running alone and then again when running with others, using \texttt{time.perf\_counter\_ns()}. We calculated slowdown as $\mathrm{slowdown} = t_{\mathrm{shared}} / t_{\mathrm{isolated}}$. To sum up fairness, we looked at Jain’s index, how much slowdown varied, the coefficient of variation, and the range between the slowest and fastest processes.
-
-
-
-To analyze working sets, we used a sliding-window method to estimate the working-set size (WSS) for each process. This let us get a good idea of the total WSS, which we used as a baseline in our memory-pressure experiments. Alongside our fairness and slowdown measurements, the simulator also kept track of overall page faults, page replacements, disk reads and writes, and total disk activity. Since wall-clock slowdown can be pretty noisy—especially for processes that don't run very long—we ran a campaign to check how stable our isolation baselines were and included statistics like the coefficient of variation (CV) in our artifact bundle.
-
-
-
-\section{Methods and Setup (Required Content Audit)}
-
-This section summarizes the current experiment matrix, trace support, slowdown measurement method, and the environment controls used in the present progress-stage campaign. We use a custom Python-based virtual memory simulator with trace-driven replay support and benchmark-control wrappers for repeatable experiments.
-
-\subsection{Current Experiment Matrix}
-
-\label{sec:matrix}
-
-The current matrix evaluates FIFO, LRU, NRU, Second Chance, and WSClock under GlobalAllocation, LocalAllocation, and ProportionalAllocation. Synthetic workload families include high\_locality, streaming, mixed, and thrashing. The current progress-stage sweep also uses memory levels of 0.8x, 1.0x, 1.2x, and 1.5x aggregate WSS, process counts of 2, 4, and 8, and 10 repetitions per configuration.
-
-Trace-driven replay is supported through the same runner used for synthetic experiments. The current trace set covers sample, locality-heavy, streaming, mixed, and thrashing families, with a smaller demo-only trace retained for artifact packaging.
-
-\subsection{Environment Controls and Slowdown Measurement}
-
-Benchmark runs record environment metadata and use wrapper scripts to reduce host noise. In practice, we rely on quiet-run and pinned-core wrappers to stabilize runs, capture environment details, and make the benchmark conditions explicit.
-
-For slowdown, each workload is executed both in a shared multiprogrammed run and in isolated per-process runs. We record runtimes with \texttt{time.perf\_counter\_ns()} and compute slowdown as $t_{\mathrm{shared}} / t_{\mathrm{isolated}}$. Fairness summaries are then derived from the slowdown distribution. In the current progress-stage data, these slowdown measurements are useful for directional comparisons, but the wall-clock component remains noisier than the page-fault and fairness-pattern trends.
-
-
-
-\section{Experimental Design}
-
-The framework is organized around synthetic workloads representing high-locality, streaming, mixed, and thrashing access patterns (the current version-locked set), plus additional diagnostic patterns (e.g., random and loop) used during development. Single-process and multi-process experiment runners automate repeated trials across combinations of algorithms, allocation policies, and memory sizes. The experiment scripts supported:
-
+The research questions were:
 \begin{itemize}
-
-  \item single-process comparisons across all implemented replacement algorithms;
-
-  \item multi-process comparisons between global and local allocation;
-
-  \item memory-pressure sweeps over several frame counts; and
-
-  \item fairness-oriented workload mixes designed to stress policy trade-offs.
-
+  \item \textbf{RQ1:} Which replacement/allocation pairings reduce page faults without creating unfair slowdown across processes?
+  \item \textbf{RQ2:} Does memory pressure near aggregate WSS create a threshold where global allocation stops helping fairness?
+  \item \textbf{RQ3:} Can simpler local policies such as FIFO or NRU outperform history-based global policies on fairness for heterogeneous workloads?
 \end{itemize}
 
+The main contributions are:
+\begin{itemize}
+  \item a Python virtual memory simulator with five replacement policies and three allocation policies;
+  \item a synthetic and trace-driven experiment harness with reproducible raw, processed, table, figure, and demo artifacts;
+  \item a fairness analysis based on shared-versus-isolated slowdown, worst-case slowdown, variance, coefficient of variation, and Jain's index;
+  \item a final hypothesis evaluation showing H1 supported, H2 supported, and H3 not supported.
+\end{itemize}
 
+\section{Related Work}
+Belady's study of virtual-storage replacement algorithms showed that simple eviction policies can behave pathologically, including FIFO cases where adding frames can increase faults \cite{Belady1966}. Denning's working-set model then connected paging behavior to locality by arguing that a process has a time-varying set of pages that must remain resident to avoid excessive faults \cite{Denning1968}. Denning's later survey placed these ideas in the broader design space of virtual memory mechanisms and adaptive policy choices \cite{Denning1970}.
 
-Besides synthetic workloads, our repository also supports running experiments on real-world traces. We convert trace CSV files into a common event format so they can use the same runner as our synthetic tests. We made sure to test both this trace-driven workflow and our isolation-baseline setup (see Section~\ref{sec:results}). For reproducibility and to cut down on system noise, we used wrapper scripts to log all environment details and pin runs to specific CPU cores. We’ve included a baseline stability report in our artifacts so others can see how much run-to-run variation there was.
+Frame allocation is the second half of the paging decision. Operating systems texts distinguish local replacement, where each process competes mainly with its own resident set, from global replacement, where processes compete for a shared pool of frames \cite{Silberschatz2019}. Proportional allocation adds a compromise by dividing frames according to process demand. Cache replacement with explicit memory allocation has also been studied as a joint optimization problem rather than as replacement alone \cite{Ghandeharizadeh2015}.
 
+Modern systems keep virtual memory relevant because page tables, memory allocators, and compaction layers all create measurable overheads at scale. Basu et al. studied efficient virtual memory for large-memory servers, Park et al. examined page-table caching pressure, Schwalb et al. addressed persistent-memory allocation, and Powers et al. explored memory compaction for C/C++ programs \cite{Basu2013,Park2020,Schwalb2015,Powers2019}. These works motivate why the replacement/allocation boundary remains important beyond textbook examples.
 
+This report differs from prior work by focusing on a course-scale but end-to-end empirical framework. It does not propose a new kernel policy. Instead, it contributes a transparent simulator and artifact bundle that make the efficiency-versus-fairness trade-off visible across replacement policy, allocation policy, memory pressure, synthetic workload family, and trace-driven replay.
 
-\section{Performance Measures}
+\section{System Design and Implementation}
+The project is implemented as a custom Python-based simulator rather than as a production-kernel modification. The simulator models page accesses, page tables, physical frames, replacement decisions, allocation boundaries, and per-process accounting. Its design has four main components.
 
-The simulator keeps track of page faults, page replacements, disk reads and writes, and total disk activity for every run. These stats were enough for us to compare different replacement strategies and see the main effects of memory pressure. We also built in tools for things like variance, confidence intervals, and $t$-tests to help analyze results from repeated tests.
+The \textbf{workload generator} constructs synthetic memory-reference streams for high-locality, streaming, mixed, and thrashing workloads. These families stress different access behaviors: compact reuse, sequential scans, heterogeneous mixes, and pressure-heavy fault patterns. The same interface also accepts normalized trace events loaded from CSV files under \file{workloads/traces/}.
 
+The \textbf{memory manager} maintains per-process page tables and a configurable physical-frame pool. It supports \texttt{GlobalAllocation}, \texttt{LocalAllocation}, and \texttt{ProportionalAllocation}. Global allocation lets processes compete for a shared frame pool; local allocation isolates each process more strongly; proportional allocation divides memory according to estimated demand.
 
+The \textbf{policy engine} implements FIFO, LRU, NRU, Second Chance, and WSClock. These policies cover a range from simple insertion-order eviction to reference-bit approximations and working-set-inspired clock behavior. Each policy exposes a common interface so the experiment runner can vary replacement and allocation independently.
 
-We checked fairness by looking at how slowdown was spread out among the different processes, using Jain's index and other measures of variation. We handled everything from running shared and isolated tests, to collecting results, to plotting them. Still, we considered these fairness numbers a bit noisy, especially for workloads that didn’t run for very long. Even with pinned-core runs, our baseline stability tests showed that some setups had more noise than others.
+The \textbf{experiment and analysis layer} automates repeated runs, exports JSON/CSV summaries, computes slowdown from isolated and shared runtimes, validates processed outputs, and generates report tables and figures. The primary entry points are \file{main.py}, \file{experiments/run_all_experiments.py}, \file{scripts/aggregate_final_results.py}, \file{scripts/validate_results.py}, \file{scripts/build_report_tables.py}, and \file{scripts/build_report_figures.py}. Windows and Unix wrapper scripts provide quiet-run and pinned-core execution paths for more stable timing metadata.
 
+Our original proposal described an emulator-based experimental plan; however, during implementation we refined the methodology and built a custom Python-based virtual memory simulator and trace-driven benchmarking framework instead. This gave us tighter control over replacement policies, allocation strategies, workload generation, and measurement instrumentation while preserving the original research goals.
 
-
-\section{Methodological Controls}
-
-We built some basic quality controls right into the code. Experiments could be repeated, workloads could be run with the same random seed, and the process was automated so we could re-run the same test setups and get consistent results. This helped avoid random changes from one run to the next.
-
-
-
-We also wrote scripts to help run benchmarks more reliably by letting us pin runs to specific CPU cores if needed, and by saving detailed environment snapshots in \texttt{results/metadata/}. To measure any leftover noise, we put together a baseline stability report that grouped similar runs and calculated how much their results varied. At this point, the biggest remaining limitations are less about missing features and more about how far we want to push the campaign—like adding more sensitivity checks, running tests longer, or including a wider variety of traces before wrapping up the project.
-
-
-
-\section{Preliminary Results and Current Findings}
-
-\label{sec:results}
-
-The current cleaned campaign snapshot covers the full synthetic matrix described in Section~\ref{sec:matrix} together with five report-grade traces. The locked aggregate includes the main workload families, all three allocation policies, all five replacement algorithms, and repeated runs across the pressure settings used for the current study. The embedded tables and figures below are drawn from that cleaned snapshot.
-
-At this stage, the current findings still point in the same general direction as the earlier progress-stage read: H1 appears to be supported, H2 is likely to hold near the working-set boundary, and H3 is not currently supported by the mixed-workload snapshot. In other words, the present campaign continues to suggest a real efficiency-versus-fairness trade-off under pressure, with global allocation helping system-level efficiency in some settings while worsening fairness-sensitive outcomes.
-
-The main caveat is measurement stability. Slowdown is based on wall-clock shared-versus-isolated timing, and the pinned-core baseline study showed that isolation timings can still be noisy for some configurations. For that reason, the current findings should be read primarily as directional evidence, while page-fault trends and broader fairness patterns remain the more stable signals in this progress report.
-
-
-
-\section{Embedded Evidence Snapshot}
-
-\label{sec:embedded_evidence}
-
-To make things easier for readers, we now include a snapshot of key data and visuals right here in the report instead of just pointing to files. The tables below come straight from our main campaign data, and the figures show exactly what’s in the headline results.
-
-
+\section{Experimental Methodology}
+The final campaign used the locked raw campaign \file{results/raw/campaign_20260404_140330_266}. Table~\ref{tab:matrix_scope} summarizes the report-grade scope. The synthetic matrix used five replacement algorithms, three allocation policies, four workload families, four memory-pressure levels, three process counts, and ten repetitions. The trace-driven side used five report traces plus one demo-only trace excluded from report-grade aggregation; trace rows preserve the process counts encoded in the trace rather than forcing the synthetic 2/4/8 grid.
 
 \begin{table}[t]
-
 \centering
-
 \footnotesize
-
-\caption{Clean canonical campaign scope used for the progress report.}
-
+\caption{Final campaign scope.}
 \label{tab:matrix_scope}
-
-\begin{tabular}{@{}p{0.28\linewidth}p{0.60\linewidth}@{}}
-
+\begin{tabular}{@{}p{0.30\linewidth}p{0.58\linewidth}@{}}
 \toprule
-
-Factor & Clean canonical setting \\
-
+Factor & Final setting \\
 \midrule
-
-Algorithms & FIFO, LRU, NRU, Second Chance, WSClock \\
-
+Replacement algorithms & FIFO, LRU, NRU, Second Chance, WSClock \\
 Allocation policies & GlobalAllocation, LocalAllocation, ProportionalAllocation \\
-
 Synthetic workloads & high\_locality, streaming, mixed, thrashing \\
-
 Memory levels & 0.8x, 1.0x, 1.2x, 1.5x aggregate WSS \\
-
-Process counts & 2, 4, 8 \\
-
-Repetitions & 10 \\
-
-Report-grade aggregate & 1005 config groups / 10,050 trial rows \\
-
-Trace families & Five report traces; one demo-only trace is excluded from report-grade aggregation \\
-
+Synthetic process counts & 2, 4, 8 \\
+Repetitions & 10 per synthetic configuration \\
+Report-grade aggregate & 1005 configuration groups / 10,050 trial rows \\
+Trace families & Five report traces; trace process counts are preserved from the trace files \\
 \bottomrule
-
 \end{tabular}
-
 \end{table}
 
+The memory-pressure settings were defined relative to aggregate WSS. This makes the experiments comparable across workloads with different locality footprints. At 1.5x WSS, the system has more slack; at 1.2x and 1.0x, it approaches the working-set boundary; at 0.8x, it operates under strong pressure.
 
+Experiments were run on a Windows host with a 12th Gen Intel Core i5-12400F processor, 16 GB of RAM, and an NVIDIA RTX 3050 GPU. Runtime-sensitive experiments used wrapper scripts such as \file{scripts/run_quiet_benchmark.ps1} and \file{scripts/run_pinned.ps1} to capture environment metadata and reduce host interference. These controls improve repeatability, but they do not eliminate all wall-clock noise.
+
+\section{Metrics and Statistical Analysis}
+The simulator records page faults, page replacements, disk reads, disk writes, total disk activity, and runtime-derived slowdown. Page faults and disk events represent efficiency. Slowdown is measured by running each workload both in isolation and in a shared multiprogrammed setting, then computing
+\[
+\mathrm{slowdown} = \frac{t_{\mathrm{shared}}}{t_{\mathrm{isolated}}}.
+\]
+Fairness is summarized with worst-case slowdown, slowdown variance, coefficient of variation (CV), and Jain's fairness index. Jain's index is close to 1.0 when normalized performance is evenly distributed and lower when one or more processes receive worse service.
+
+Repeated trials support means, standard deviations, confidence-interval style summaries, and threshold-based hypothesis checks. The hypothesis table is generated from \file{results/processed/hypothesis_evaluation.csv}, while the report-facing policy tables are generated from \file{results/processed/final_aggregate_results.csv}. The validation bundle \file{results/processed/validation_report.json} records 1005 valid source groups and no duplicate source or configuration records, but it also records non-blocking instrumentation issues such as missing shared or isolation runtime records for some raw summaries. Therefore, page-fault and fairness-pattern trends are more stable than exact wall-clock slowdown point estimates.
+
+\section{Results and Analysis}
+\subsection{Campaign Coverage}
+The final processed outputs are anchored by \file{results/processed/final_aggregate_results.csv}, \file{results/processed/hypothesis_evaluation.csv}, and \file{results/processed/validation_report.json}. The report-facing tables in \file{results/tables/} and figures in \file{results/figures/} were generated from these processed outputs. The campaign covers 720 synthetic aggregate configurations with 7,200 trials and 285 trace aggregate configurations with 2,850 trials. This lets us compare controlled stress patterns against concrete reference streams.
+
+\subsection{Synthetic Workload Results}
+Table~\ref{tab:synthetic_best} reports the table-selected best policy combination for each synthetic workload under three metrics; ties are possible in the underlying aggregate. FIFO with global allocation produced the lowest page-fault totals across the synthetic workload families in this aggregate. The fairness-oriented winners were different: NRU with proportional or local allocation often minimized worst-case slowdown, and local or proportional allocation most often produced the highest Jain's index. This split is the main empirical signal behind the paper: one policy pairing may reduce faults while another better protects the slowest process.
 
 \begin{table}[t]
-
 \centering
-
 \small
-
-\caption{Headline results by synthetic workload in the cleaned canonical aggregate.}
-
+\caption{Headline results by synthetic workload.}
 \label{tab:synthetic_best}
-
 \resizebox{\linewidth}{!}{%
-
 \begin{tabular}{llll}
-
 \toprule
-
 Workload & Lowest page faults & Lowest worst slowdown & Highest Jain's index \\
-
 \midrule
-
 high\_locality & FIFO + GlobalAllocation (144.0) & NRU + ProportionalAllocation (1.5105) & SecondChance + LocalAllocation (0.99997) \\
-
 mixed & FIFO + GlobalAllocation (202.7) & NRU + LocalAllocation (1.5054) & FIFO + LocalAllocation (0.99988) \\
-
 streaming & FIFO + GlobalAllocation (340.0) & NRU + LocalAllocation (1.4488) & LRU + ProportionalAllocation (0.99991) \\
-
 thrashing & FIFO + GlobalAllocation (204.0) & NRU + ProportionalAllocation (1.5057) & FIFO + LocalAllocation (0.99987) \\
-
 \bottomrule
-
 \end{tabular}%
-
 }
-
 \end{table}
-
-
-
-\begin{table}[t]
-
-\centering
-
-\small
-
-\caption{Headline results by trace workload in the cleaned canonical aggregate.}
-
-\label{tab:trace_best}
-
-\resizebox{\linewidth}{!}{%
-
-\begin{tabular}{llll}
-
-\toprule
-
-Trace workload & Lowest page faults & Lowest worst slowdown & Highest Jain's index \\
-
-\midrule
-
-report\_locality\_heavy & FIFO + GlobalAllocation (4.0) & FIFO + ProportionalAllocation (1.0782) & NRU + GlobalAllocation (0.99867) \\
-
-report\_mixed\_heterogeneous & FIFO + GlobalAllocation (11.0) & FIFO + ProportionalAllocation (0.9630) & SecondChance + GlobalAllocation (0.99846) \\
-
-report\_streaming\_sequential & FIFO + GlobalAllocation (16.0) & FIFO + ProportionalAllocation (1.0486) & SecondChance + GlobalAllocation (0.99965) \\
-
-report\_thrashing\_pressure & FIFO + GlobalAllocation (10.0) & FIFO + ProportionalAllocation (1.0739) & WSClock + LocalAllocation (0.99963) \\
-
-sample\_trace & FIFO + GlobalAllocation (5.0) & FIFO + ProportionalAllocation (0.9342) & LRU + LocalAllocation (0.99781) \\
-
-\bottomrule
-
-\end{tabular}%
-
-}
-
-\end{table}
-
-
-
-\begin{table}[t]
-
-\centering
-
-\scriptsize
-
-\caption{H1/H2/H3 summary from the cleaned canonical hypothesis evaluation.}
-
-\label{tab:hypothesis_summary}
-
-\resizebox{\linewidth}{!}{%
-
-\begin{tabular}{p{0.10\linewidth}p{0.31\linewidth}p{0.21\linewidth}p{0.14\linewidth}p{0.12\linewidth}}
-
-\toprule
-
-Hyp. & Test condition & Baseline $\rightarrow$ cmp. & Change & Status \\
-
-\midrule
-
-H1 & High locality, 4 procs, near $1.2\times$ WSS & 326.2 $\rightarrow$ 325.1 faults & $-0.34\%$ & Supported \\
-
-H2 & Aggregate-WSS boundary, 4 procs & 0.01190 $\rightarrow$ 0.01886 variance & $+58.53\%$ & Supported \\
-
-H3 & Mixed workload, 4 procs, near WSS & 2.6449 $\rightarrow$ 3.2209 slowdown & $+21.78\%$ & Not sup. \\
-
-\bottomrule
-
-\end{tabular}}
-
-\end{table}
-
-
 
 \begin{figure}[t]
-
 \centering
-
 \includegraphics[width=\linewidth]{results/figures/page_faults_vs_memory_pressure.png}
-
-\caption{Page faults vs. memory pressure in the cleaned canonical aggregate.}
-
+\caption{Page faults versus memory pressure in the final aggregate.}
 \label{fig:pagefaults}
-
 \end{figure}
 
+Figure~\ref{fig:pagefaults} shows the expected pressure effect: tighter memory budgets increase fault sensitivity. The exact policy ranking varies by workload, but the high-level pattern is stable enough to support the conclusion that fault minimization is not the same as fairness optimization.
 
+\subsection{Trace-Driven Results}
+Table~\ref{tab:trace_best} summarizes the trace-driven replay results. The trace rows are much smaller than the synthetic matrix, but they are valuable because they verify that the same tooling can replay concrete event streams. FIFO with global allocation again produced the table-selected lowest page-fault counts in the trace rows, while FIFO with proportional allocation minimized worst-case slowdown across the five trace rows. Jain's-index winners still varied by trace, reinforcing the need to report more than one metric.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Headline results by trace workload.}
+\label{tab:trace_best}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{llll}
+\toprule
+Trace workload & Lowest page faults & Lowest worst slowdown & Highest Jain's index \\
+\midrule
+report\_locality\_heavy & FIFO + GlobalAllocation (4.0) & FIFO + ProportionalAllocation (1.0782) & NRU + GlobalAllocation (0.99867) \\
+report\_mixed\_heterogeneous & FIFO + GlobalAllocation (11.0) & FIFO + ProportionalAllocation (0.9630) & SecondChance + GlobalAllocation (0.99846) \\
+report\_streaming\_sequential & FIFO + GlobalAllocation (16.0) & FIFO + ProportionalAllocation (1.0486) & SecondChance + GlobalAllocation (0.99965) \\
+report\_thrashing\_pressure & FIFO + GlobalAllocation (10.0) & FIFO + ProportionalAllocation (1.0739) & WSClock + LocalAllocation (0.99963) \\
+sample\_trace & FIFO + GlobalAllocation (5.0) & FIFO + ProportionalAllocation (0.9342) & LRU + LocalAllocation (0.99781) \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
 
 \begin{figure}[t]
-
 \centering
-
-\includegraphics[width=\linewidth]{results/figures/worst_case_slowdown_vs_policy.png}
-
-\caption{Worst-case slowdown vs. allocation policy in the cleaned canonical aggregate.}
-
-\label{fig:worstslowdown}
-
-\end{figure}
-
-
-
-\begin{figure}[t]
-
-\centering
-
-\includegraphics[width=\linewidth]{results/figures/jains_fairness_vs_policy.png}
-
-\caption{Jain's fairness index vs. allocation policy in the cleaned canonical aggregate.}
-
-\label{fig:jains}
-
-\end{figure}
-
-
-
-\begin{figure}[t]
-
-\centering
-
 \includegraphics[width=\linewidth]{results/figures/trace_driven_comparison.png}
-
-\caption{Trace-driven comparison across the cleaned canonical trace families.}
-
+\caption{Trace-driven comparison across report-grade trace families.}
 \label{fig:tracecompare}
-
 \end{figure}
 
+\subsection{Efficiency vs. Fairness Trade-offs}
+Figures~\ref{fig:worstslowdown} and~\ref{fig:jains} show that allocation policy changes the fairness story. Worst-case slowdown exposes tail behavior that average faults can hide, while Jain's index captures how evenly service is distributed. A policy that wins on faults can still create a worse slowest process, especially near the working-set boundary.
 
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{results/figures/worst_case_slowdown_vs_policy.png}
+\caption{Worst-case slowdown by allocation policy in the final aggregate.}
+\label{fig:worstslowdown}
+\end{figure}
 
-\section{Completed Work}
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{results/figures/jains_fairness_vs_policy.png}
+\caption{Jain's fairness index by allocation policy in the final aggregate.}
+\label{fig:jains}
+\end{figure}
 
-To date, we have successfully implemented a suite of page replacement policies, specifically FIFO, LRU, NRU, Second Chance, and WSClock, alongside global, local, and proportional frame-allocation strategies. To drive our evaluations, we developed synthetic workload generators capable of producing locality-heavy, streaming, random, mixed, loop, and thrashing access patterns. The simulation framework is further supported by automated experiment runners designed for repeated single-process and multi-process studies, as well as analytical helpers for generating summary statistics and comparing policy performance. Finally, we have established comprehensive documentation and a report skeleton structured around our three core research questions.
+\begin{table}[t]
+\centering
+\scriptsize
+\caption{Final H1/H2/H3 hypothesis summary.}
+\label{tab:hypothesis_summary}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{p{0.10\linewidth}p{0.31\linewidth}p{0.21\linewidth}p{0.14\linewidth}p{0.12\linewidth}}
+\toprule
+Hyp. & Test condition & Baseline $\rightarrow$ cmp. & Change & Status \\
+\midrule
+H1 & High locality, 4 procs, near 1.2x WSS & 326.2 $\rightarrow$ 325.1 faults & -0.34\% & Supported \\
+H2 & Aggregate-WSS boundary, 4 procs & 0.01190 $\rightarrow$ 0.01886 variance & +58.53\% & Supported \\
+H3 & Mixed workload, 4 procs, near WSS & 2.6449 $\rightarrow$ 3.2209 slowdown & +21.78\% & Not sup. \\
+\bottomrule
+\end{tabular}}
+\end{table}
 
+\subsection{Runtime and Stability Observations}
+The slowdown metrics are useful for directional fairness comparisons, but they are noisier than page faults. The isolation baseline study in \file{docs/isolation_stability.md} reports 264 baseline groups, with 81 stable groups, 39 review groups, and 144 unstable groups. The median CV was 0.128607 and the mean CV was 0.1902, so the report treats exact slowdown magnitudes cautiously. This caveat does not invalidate the page-fault trends, and it is why the discussion emphasizes broad fairness patterns and hypothesis directions rather than single-run wall-clock values.
 
+\section{Hypothesis Outcome Discussion}
+\textbf{H1 is supported.} The H1 comparison used high-locality workloads with four processes near 1.2x aggregate WSS. LRU with global allocation reduced page faults from 326.2 to 325.1 compared with LRU local allocation, a 0.34\% reduction, while worst-case slowdown increased from 1.6298 to 3.6517, a 124.05\% increase. Jain's index also dropped from 0.99645 to 0.95621 in that slice. The fault improvement is small, but the slowdown penalty is large, confirming the expected efficiency--fairness trade-off.
 
-Our original proposal described an emulator-based experimental plan; however, during implementation we refined the methodology and built a custom Python-based virtual memory simulator and trace-driven benchmarking framework instead. This change gave us tighter control over page replacement, frame allocation, workload generation, and measurement instrumentation while still supporting the same core research questions and evaluation goals.
-We also double-checked the repository for any problems with running the code or mismatches in our reporting. This review turned up a few practical issues that we had to fix before we could create the current campaign snapshot. These included cleaning up some runtime bugs in the allocation path, making sure WSClock worked correctly under eviction pressure, and making sure our documentation matched what was actually measured and reported.
+\textbf{H2 is supported.} Near the aggregate WSS boundary with four processes, slowdown variance increased from 0.01190 under local allocation to 0.01886 under global allocation, a 58.53\% increase. This supports the hypothesis that global allocation can amplify fairness differences near the working-set boundary.
 
+\textbf{H3 is not supported.} For the mixed workload with four processes near aggregate WSS, the FIFO/NRU local comparison condition increased worst-case slowdown from 2.6449 to 3.2209, a 21.78\% increase, instead of reducing it. The advanced global comparison also had fewer faults in that slice, moving from 1115.7 to 345.5 faults when compared against the simple local condition. The primary fairness metric did not improve, so the result rejects the claim that simple local policies were better for fairness under the mixed-workload conditions tested.
 
-\section{Limitations and Future Work}
+\section{Limitations and Threats to Validity}
+The first threat is wall-clock timing noise. Shared and isolated runtimes are measured on a general-purpose host, so operating-system scheduling and background activity can affect slowdown values even with quiet and pinned wrappers.
 
-\paragraph{Limitations.}
+The second threat is trace diversity. The trace-driven study covers five report traces, which is enough to exercise replay support but not enough to represent the full range of real production workloads.
 
-We can measure slowdown by comparing runs done in isolation to those done with shared workloads, but the results are still a bit noisy. That means our current findings are best used to spot overall trends in policy performance at different memory-pressure levels, not as final, universally-applicable conclusions. Our current set of traces is realistic, but it's not as broad as it could be, so the most reliable takeaways will come after we finish the expanded campaign and not just from this early snapshot.
+The third threat is the simulator-to-kernel gap. The simulator gives strong control over policies and instrumentation, but it omits many production details such as hardware prefetching, TLB behavior, disk scheduling, NUMA effects, and kernel paging heuristics.
 
+The fourth threat is validation scope. The canonical validation report confirms readable source groups and no duplicate configurations, but it also records non-blocking instrumentation issues in some raw summaries. For that reason, fairness conclusions are stronger directionally than as exact slowdown magnitudes.
 
+\section{Future Work}
+Future work will focus on broadening the trace set, improving runtime isolation, and adding an explicit efficiency cost model. A useful next step is a weighted cost function that combines page faults, disk reads, disk writes, replacement activity, and slowdown penalties. This would let future experiments compare whether the policy that minimizes faults also minimizes total execution cost under more realistic storage-cost assumptions.
 
-\paragraph{Next Phase.}
+\section{Reproducibility and Artifact Availability}
+The canonical raw campaign is \file{results/raw/campaign_20260404_140330_266}. The canonical processed outputs are \file{results/processed/final_aggregate_results.csv}, \file{results/processed/hypothesis_evaluation.csv}, and \file{results/processed/validation_report.json}. Report figures live in \file{results/figures/}, report tables live in \file{results/tables/}, and the final demo bundle lives in \file{results/demo/final_bundle}.
 
-For the next phase, we're aiming to turn our benchmarking framework into a study that's ready for a conference. This means we'll grow and test the set of trace-based evaluations, make slowdown measurement more stable and robust against noise, and finish the full statistical analysis over all repeated runs. We'll also wrap up the hypothesis summaries for H1, H2, and H3, pull our best figures and tables into the main paper, and make sure our conclusions are based on real data from our experiments. To finish, we'll put together a polished reproducibility package with all the key results, traces, scripts, and demo materials so the project stands as a complete, shareable study fit for submission.
+The exact rerun commands are recorded in \file{docs/final_submission_checklist.md}. The workflow is to run the unit tests, inspect the command-line help paths, execute the allocation smoke test, refresh the final demo bundle, rebuild report tables and figures, and run \file{scripts/build_final_report_artifacts.py}. The Windows quiet wrapper was also verified with output metadata under \file{tests/\_quiet\_wrapper\_smoke/metadata/}.
 
-In the next phase, we also plan to add an explicit efficiency cost model so that policies can be compared using a single composite system-level metric rather than only separate page-fault, I/O, slowdown, and fairness measures. The goal is to define a weighted cost function that combines page faults, disk reads, disk writes, replacement activity, and slowdown-related penalties, then use that model to compare whether the policies that minimize page faults also minimize overall execution cost. This extension will make the final study stronger by giving us a clearer way to discuss efficiency trade-offs alongside fairness.
-
-
-
-\section{Reproducibility and Artifacts}
-
-All quantitative statements in Section~\ref{sec:results} are backed by checked-in outputs located within the \file{results/} directory, with a comprehensive artifact index and reproduction guide available in \file{docs/report_artifacts.md}. The experimental bundles were generated using our primary matrix runner, \file{experiments/run_all_experiments.py}, executed with the \texttt{--final} flag. These runs utilized trace inputs such as \file{sample_trace.csv}, \file{demo_locality.csv}, and various \file{report_*.csv} files stored under \file{workloads/traces/}. 
-
-The resulting raw outputs, including \file{shared_results.csv} and \file{isolation_results.csv}, are preserved in the canonical campaign folder within \file{results/raw/}. These raw data were subsequently refined into processed outputs—namely \file{slowdown_metrics.csv}, \file{final_aggregate_results.csv}, and \file{hypothesis_evaluation.csv}—located under \file{results/processed/}. For analysis and visualization, presentation outputs such as Markdown tables and figures are automatically generated and saved to \file{results/tables/} and \file{results/figures/}, respectively. 
-
-The framework's core analysis entry points include \file{main.py}, alongside specialized scripts for baseline isolation (\file{scripts/run_isolation_baselines.py}) and report generation (\file{scripts/build_report_tables.py} and \file{scripts/build_report_figures.py}). Data validation is strictly handled by \file{scripts/aggregate_final_results.py} and \file{scripts/validate_results.py}. Finally, to ensure stable execution and reliable artifact capture, we employed wrapper scripts (\file{scripts/run_quiet_benchmark.ps1} and \file{scripts/run_pinned.ps1}) that log environment metadata under \file{results/metadata/}, while a dedicated generator (\file{results/demo/generate_demo_bundle.py}) compiles the final demo bundle as documented in \file{docs/final_demo_bundle.md}.
-
-
-
-\section{Roles and Milestones}
-
-\begin{itemize}
-    \item \textbf{Pranav Kumar Kaliaperumal:} Led replacement-policy experiments, automation, and data collection. \textbf{Next phase ownership:} Will handle any final sensitivity checks judged worth adding and package and polish the final demo bundle.
-    \item \textbf{Spandana Erukulla:} Led allocation-policy comparisons, workload construction, stress testing, and fairness-oriented experiments. \textbf{Next phase ownership:} Will co-handle any final sensitivity checks judged worth adding beyond the cleaned canonical campaign.
-    \item \textbf{Akanksha Gutal:} Led analysis/validation, visualization, statistics, and report integration. \textbf{Next phase ownership:} Will lead result validation, finalize the compact figure/table set, and polish the final report and artifact checklist.
-    \item \textbf{All Team Members:} Will cross-review conclusions and complete a fresh-run reproducibility check before submission.
-\end{itemize}
-
-\paragraph{Milestones (as of April 4, 2026).}
-
-\textbf{Completed}
-\begin{itemize}
-  \item Core virtual-memory simulator and experiment harness (replacement + allocation) working end-to-end.
-  \item Algorithm implementations: FIFO, LRU, NRU, Second Chance, WSClock; plus global/local/proportional frame allocation.
-  \item Trace-driven replay integrated alongside synthetic workload generation.
-  \item Runtime-based slowdown measurement pipeline (isolation baselines + shared runs) with logged CSV/JSON outputs.
-  \item Wrapper scripts for stable execution and artifact capture (quiet runs, pinned cores, environment metadata).
-  \item Clean canonical campaign rebuild and report-grade aggregation (1005 config groups / 10,050 trial rows).
-\end{itemize}
-
-\textbf{In Progress}
-\begin{itemize}
-  \item Final statistical interpretation and result sanity checks (baseline stability, variance/CI reporting, and robustness discussion) \textbf{(Expected: April 15, 2026)}.
-  \item Final figure/table generation for the core submission evidence set \textbf{(Expected: April 18, 2026)}.
-  \item Report polishing (tightening narrative, limitations, and reproducibility notes) \textbf{(Expected: April 22, 2026)}.
-\end{itemize}
-
-\textbf{Remaining for Final Submission}
-\begin{itemize}
-  \item Final hypothesis write-up polish (H1--H3: concise interpretation aligned to the core figures/tables and presentation narrative) \textbf{(Expected: April 25, 2026)}.
-  \item Final demo/report artifact polish (clean submission packaging around the existing demo bundle and report assets) \textbf{(Expected: April 28, 2026)}.
-  \item Final artifact verification (fresh-run reproducibility, file-manifest consistency, and one last validation-script pass before submission) \textbf{(Expected: May 2, 2026)}.
-\end{itemize}
-
-\textbf{In Progress}
-
-\begin{itemize}
-
-  \item Final statistical interpretation and result sanity checks (baseline stability, variance/CI reporting, and robustness discussion).
-
-  \item Final figure/table generation for the core submission evidence set.
-
-  \item Report polishing (tightening narrative, limitations, and reproducibility notes).
-
-\end{itemize}
-
-\textbf{Remaining for Final Submission}
-
-\begin{itemize}
-
-  \item Final hypothesis write-up polish (H1--H3: concise interpretation aligned to the core figures/tables and presentation narrative).
-
-  \item Final demo/report artifact polish (clean submission packaging around the existing demo bundle and report assets).
-
-  \item Final artifact verification (fresh-run reproducibility, file-manifest consistency, and one last validation-script pass before submission).
-
-\end{itemize}
-
-
-\section{Environment}
-This project is implemented as a Python-based virtual memory simulation and benchmarking framework. Experiments are executed through the custom simulator, with trace-driven replay support and host-side benchmark wrappers for pinned and quiet runs. The implementation relies on NumPy, SciPy, Matplotlib, and \texttt{tqdm}, and it runs from the command line on Windows, macOS, or Linux as long as the required Python environment is available. 
-
-To meet performance and reproducibility requirements, experiments were executed on a host machine equipped with an Intel Core i5-12400F processor (2.50 GHz, 6 cores), 16 GB of RAM, and an NVIDIA RTX 3050 GPU. We utilized pinned CPU cores to minimize host-OS interference during runtime isolation baselines. Building the PDF version of this report additionally requires a working local \LaTeX{} installation.
+\section{Conclusion}
+This report evaluated a custom virtual memory simulator and trace-driven benchmark framework for replacement and allocation policies under memory pressure. The final evidence shows that H1 is supported, H2 is supported, and H3 is not supported. The central implication is that page-fault minimization alone is an incomplete policy-selection criterion: allocation choices can shift fairness and worst-case slowdown even when fault counts improve. The most important next direction is a broader trace set paired with a more explicit efficiency cost model, so future evaluations can compare fault, I/O, runtime, and fairness costs in a single framework.
 
 \bibliographystyle{IEEEtran}
-
-
 \bibliography{progress_report}
-
-
 
 \end{document}

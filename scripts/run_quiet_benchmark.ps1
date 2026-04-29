@@ -6,6 +6,27 @@ param(
 
 $ErrorActionPreference = 'Stop'
 
+function Normalize-BenchmarkArgs {
+    param([string[]]$RawBenchmarkArgs)
+
+    if ($RawBenchmarkArgs.Count -eq 1 -and $RawBenchmarkArgs[0] -match '^--[^,]+,') {
+        return @($RawBenchmarkArgs[0] -split ',' | Where-Object { $_ -ne '' })
+    }
+
+    return $RawBenchmarkArgs
+}
+
+$BenchmarkArgs = Normalize-BenchmarkArgs -RawBenchmarkArgs $BenchmarkArgs
+
+if ($ResultsDir -eq 'results') {
+    for ($i = 0; $i -lt $BenchmarkArgs.Count - 1; $i++) {
+        if ($BenchmarkArgs[$i] -eq '--output-dir') {
+            $ResultsDir = $BenchmarkArgs[$i + 1]
+            break
+        }
+    }
+}
+
 $scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
 $repoRoot = Split-Path -Parent $scriptDir
 $resultsRoot = Join-Path $repoRoot $ResultsDir
