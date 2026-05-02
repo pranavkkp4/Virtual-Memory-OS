@@ -62,12 +62,13 @@ def _read_data_rows(path: Path) -> List[List[str]]:
 
 def _rows_to_dicts(header: Sequence[str], rows: Iterable[Sequence[str]]) -> List[Dict[str, Any]]:
     """Convert header-based CSV rows into dictionaries."""
+    normalized_header = [key.strip().lower() for key in header]
     dict_rows: List[Dict[str, Any]] = []
     for row in rows:
         record: Dict[str, Any] = {}
-        for index, key in enumerate(header):
+        for index, key in enumerate(normalized_header):
             if index < len(row):
-                record[key.strip()] = row[index].strip()
+                record[key] = row[index].strip()
         dict_rows.append(record)
     return dict_rows
 

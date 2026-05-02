@@ -110,6 +110,25 @@ def calculate_fairness_metrics(process_metrics: Dict[int, Dict]) -> Dict:
 
 def perform_t_test(sample1: List[float], sample2: List[float], alpha: float = 0.05) -> Dict:
     """Perform Welch's two-sample t-test."""
+    mean1 = float(np.mean(sample1)) if sample1 else 0.0
+    mean2 = float(np.mean(sample2)) if sample2 else 0.0
+    diff = mean1 - mean2
+    percent_difference = float((diff / mean2 * 100) if mean2 != 0 else 0.0)
+
+    if len(sample1) < 2 or len(sample2) < 2:
+        return {
+            't_statistic': 0.0,
+            'p_value': 1.0,
+            'significant': False,
+            'mean1': mean1,
+            'mean2': mean2,
+            'difference': float(diff),
+            'percent_difference': percent_difference,
+            'ci_95': (float(diff), float(diff)),
+            'alpha': alpha,
+            'insufficient_samples': True,
+        }
+
     t_stat, p_value = stats.ttest_ind(sample1, sample2, equal_var=False)
 
     mean1, mean2 = float(np.mean(sample1)), float(np.mean(sample2))

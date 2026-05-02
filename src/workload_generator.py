@@ -15,7 +15,6 @@ References:
 """
 
 import random
-import numpy as np
 from typing import List, Tuple, Dict, Optional
 from dataclasses import dataclass
 from enum import Enum
@@ -49,10 +48,12 @@ class WorkloadGenerator:
     """Generator for synthetic memory access traces."""
     
     def __init__(self, config: WorkloadConfig):
+        if config.num_pages <= 0:
+            raise ValueError("num_pages must be greater than zero")
+        if config.num_accesses < 0:
+            raise ValueError("num_accesses must be non-negative")
         self.config = config
-        if config.seed is not None:
-            random.seed(config.seed)
-            np.random.seed(config.seed)
+        self.rng = random.Random(config.seed)
     
     def generate(self) -> List[Tuple[int, int, bool]]:
         """
@@ -84,20 +85,21 @@ class WorkloadGenerator:
         """
         accesses = []
         wss = self.config.working_set_size or max(10, self.config.num_pages // 10)
+        wss = max(1, min(wss, self.config.num_pages))
         
         # Define working set
         working_set = list(range(wss))
         other_pages = list(range(wss, self.config.num_pages))
         
         for _ in range(self.config.num_accesses):
-            if random.random() < self.config.locality_probability:
+            if self.rng.random() < self.config.locality_probability:
                 # Access working set
-                page_id = random.choice(working_set)
+                page_id = self.rng.choice(working_set)
             else:
                 # Access outside working set
-                page_id = random.choice(other_pages) if other_pages else random.choice(working_set)
+                page_id = self.rng.choice(other_pages) if other_pages else self.rng.choice(working_set)
             
-            is_write = random.random() < 0.3  # 30% writes
+            is_write = self.rng.random() < 0.3  # 30% writes
             accesses.append((page_id, 0, is_write))
         
         return accesses
@@ -112,14 +114,14 @@ class WorkloadGenerator:
         current_page = 0
         
         for _ in range(self.config.num_accesses):
-            if random.random() < self.config.sequential_probability:
+            if self.rng.random() < self.config.sequential_probability:
                 # Sequential access
                 current_page = (current_page + 1) % self.config.num_pages
             else:
                 # Random jump
-                current_page = random.randint(0, self.config.num_pages - 1)
+                current_page = self.rng.randint(0, self.config.num_pages - 1)
             
-            is_write = random.random() < 0.2  # 20% writes
+            is_write = self.rng.random() < 0.2  # 20% writes
             accesses.append((current_page, 0, is_write))
         
         return accesses
@@ -133,8 +135,8 @@ class WorkloadGenerator:
         accesses = []
         
         for _ in range(self.config.num_accesses):
-            page_id = random.randint(0, self.config.num_pages - 1)
-            is_write = random.random() < 0.3
+            page_id = self.rng.randint(0, self.config.num_pages - 1)
+            is_write = self.rng.random() < 0.3
             accesses.append((page_id, 0, is_write))
         
         return accesses
@@ -146,23 +148,25 @@ class WorkloadGenerator:
         Alternates between different access patterns.
         """
         accesses = []
-        phase_length = self.config.num_accesses // 4
+        phase_lengths = [self.config.num_accesses // 4] * 4
+        for index in range(self.config.num_accesses % 4):
+            phase_lengths[index] += 1
         
         # Phase 1: High locality
         self.config.workload_type = WorkloadType.HIGH_LOCALITY
-        accesses.extend(self._generate_high_locality()[:phase_length])
+        accesses.extend(self._generate_high_locality()[:phase_lengths[0]])
         
         # Phase 2: Streaming
         self.config.workload_type = WorkloadType.STREAMING
-        accesses.extend(self._generate_streaming()[:phase_length])
+        accesses.extend(self._generate_streaming()[:phase_lengths[1]])
         
         # Phase 3: Random
         self.config.workload_type = WorkloadType.RANDOM
-        accesses.extend(self._generate_random()[:phase_length])
+        accesses.extend(self._generate_random()[:phase_lengths[2]])
         
         # Phase 4: Loop
         self.config.workload_type = WorkloadType.LOOP
-        accesses.extend(self._generate_loop()[:phase_length])
+        accesses.extend(self._generate_loop()[:phase_lengths[3]])
         
         # Restore original type
         self.config.workload_type = WorkloadType.MIXED
@@ -181,12 +185,12 @@ class WorkloadGenerator:
         
         for _ in range(self.config.num_accesses // loop_size):
             for page_id in range(loop_size):
-                is_write = random.random() < 0.3
+                is_write = self.rng.random() < 0.3
                 accesses.append((page_id, 0, is_write))
         
         # Pad to reach num_accesses
         while len(accesses) < self.config.num_accesses:
-            accesses.append((random.randint(0, loop_size - 1), 0, False))
+            accesses.append((self.rng.randint(0, loop_size - 1), 0, False))
         
         return accesses[:self.config.num_accesses]
     
@@ -205,7 +209,7 @@ class WorkloadGenerator:
         for i in range(self.config.num_accesses):
             # Rapidly switch between large number of pages
             page_id = (i * 7) % active_pages  # Stride pattern
-            is_write = random.random() < 0.3
+            is_write = self.rng.random() < 0.3
             accesses.append((page_id, 0, is_write))
         
         return accesses
@@ -247,6 +251,12 @@ class MultiProcessWorkloadGenerator:
             pid: WorkloadGenerator(config) 
             for pid, config in process_configs.items()
         }
+        seed_material = tuple(
+            (pid, config.seed)
+            for pid, config in sorted(process_configs.items())
+            if config.seed is not None
+        )
+        self.rng = random.Random(repr(seed_material)) if seed_material else random.Random()
         self.last_process_traces: Dict[int, List[Tuple[int, int, bool]]] = {}
         self.last_trace: List[Tuple[int, int, bool]] = []
     
@@ -294,7 +304,7 @@ class MultiProcessWorkloadGenerator:
         
         while active_processes:
             # Choose random active process
-            pid = random.choice(active_processes)
+            pid = self.rng.choice(active_processes)
             
             if indices[pid] < len(process_traces[pid]):
                 all_accesses.append(process_traces[pid][indices[pid]])

@@ -39,6 +39,10 @@ class PageReplacementAlgorithm(ABC):
     """Abstract base class for page replacement algorithms."""
     
     def __init__(self, num_frames: int):
+        if not isinstance(num_frames, int):
+            raise ValueError("num_frames must be an integer")
+        if num_frames <= 0:
+            raise ValueError("num_frames must be greater than zero")
         self.num_frames = num_frames
         self.frames: Dict[int, Page] = {}  # frame_id -> Page
         self.page_table: Dict[int, int] = {}  # page_id -> frame_id

@@ -84,6 +84,19 @@ def default_trace_files() -> List[Path]:
     return sorted(trace_dir.glob("*.csv"))
 
 
+def resolve_trace_files(trace_files: Optional[Sequence[str]] = None) -> List[Path]:
+    """Return trace paths after validating user-provided inputs."""
+    if trace_files:
+        selected_trace_files = [Path(trace_file) for trace_file in trace_files]
+    else:
+        selected_trace_files = default_trace_files()
+
+    missing = [str(path) for path in selected_trace_files if not path.is_file()]
+    if missing:
+        raise FileNotFoundError(f"trace file not found: {', '.join(missing)}")
+    return selected_trace_files
+
+
 def ensure_output_dirs(output_dir: Path) -> Dict[str, Path]:
     """Create the results bundle directories."""
     directories = {
@@ -633,10 +646,7 @@ def run_trace_driven_experiments(
     print("TRACE-DRIVEN EXPERIMENTS")
     print("=" * 80 + "\n")
 
-    if trace_files:
-        selected_trace_files = [Path(trace_file) for trace_file in trace_files]
-    else:
-        selected_trace_files = default_trace_files()
+    selected_trace_files = resolve_trace_files(trace_files)
 
     results: List[Dict] = []
     for trace_file in selected_trace_files:
@@ -757,6 +767,12 @@ def main():
         help="Optional CPU affinity metadata to record alongside the run.",
     )
     args = parser.parse_args()
+
+    if args.final or args.experiment == "trace" or args.trace_file:
+        try:
+            resolve_trace_files(args.trace_file)
+        except FileNotFoundError as exc:
+            parser.error(str(exc))
 
     output_dir = Path(args.output_dir)
     directories = ensure_output_dirs(output_dir)

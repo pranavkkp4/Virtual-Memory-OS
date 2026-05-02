@@ -41,6 +41,14 @@ def _as_int(value: Any) -> Optional[int]:
         return value
     if isinstance(value, float) and value.is_integer():
         return int(value)
+    if isinstance(value, str):
+        text = value.strip()
+        if not text:
+            return None
+        try:
+            return int(text, 0)
+        except ValueError:
+            return None
     return None
 
 

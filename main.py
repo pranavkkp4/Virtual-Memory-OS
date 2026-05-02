@@ -20,6 +20,17 @@ from page_replacement import get_algorithm
 from workload_generator import PREDEFINED_WORKLOADS, WorkloadGenerator
 
 
+def positive_int(value: str) -> int:
+    """Parse a positive integer for argparse options."""
+    try:
+        parsed = int(value)
+    except ValueError as exc:
+        raise argparse.ArgumentTypeError(f"{value!r} is not an integer") from exc
+    if parsed <= 0:
+        raise argparse.ArgumentTypeError("must be greater than zero")
+    return parsed
+
+
 def run_simulation(args):
     """Run a single simulation."""
     print(f"\nRunning simulation with {args.algorithm} algorithm")
@@ -151,7 +162,7 @@ Examples:
         choices=["FIFO", "LRU", "NRU", "SecondChance", "WSClock"],
         help="Page replacement algorithm",
     )
-    sim_parser.add_argument("--frames", "-f", type=int, default=50, help="Number of frames")
+    sim_parser.add_argument("--frames", "-f", type=positive_int, default=50, help="Number of frames")
     sim_parser.add_argument(
         "--workload",
         "-w",
@@ -199,6 +210,13 @@ def main():
     if not args.command:
         parser.print_help()
         return
+
+    if args.command == "experiment" and (
+        args.type == "trace" or args.final or args.trace_file
+    ):
+        for trace_file in args.trace_file or []:
+            if not Path(trace_file).is_file():
+                parser.error(f"trace file not found: {trace_file}")
 
     commands = {
         "simulate": run_simulation,
